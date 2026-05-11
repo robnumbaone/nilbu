@@ -1,0 +1,22 @@
+:root {
+  --ink:          #0A0A0A;
+  --ink-2:        #141414;
+  --paper:        #F5F4F1;
+  --paper-2:      #ECEAE4;
+  --line:         #E6E3DC;
+  --line-dk:      #1F1F1F;
+  --mute:         #8A8A8A;
+  --mute-dk:      #6B6B6B;
+  --accent:       #2D5BFF;
+  --accent-2:     #6A8BFF;
+  --accent-soft:  #B7C4FF;
+
+  --font-display: 'Inter Tight', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --r-chip: 14px;
+  --r-card: 18px;
+  --r-hero: 22px;
+  --r-icon: 28px;
+}

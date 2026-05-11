@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>NILBU — Brand Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0A0A0A;
+    --ink-2: #141414;
+    --paper: #F5F4F1;
+    --paper-2: #ECEAE4;
+    --line: #E6E3DC;
+    --line-dk: #1F1F1F;
+    --mute: #8A8A8A;
+    --mute-dk: #6B6B6B;
+    --accent: #2D5BFF;
+    --accent-2: #6A8BFF;
+    --accent-soft: #B7C4FF;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--paper);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .page { max-width: 1320px; margin: 0 auto; padding: 64px 80px 160px; }
+
+  /* HEADER */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mute-dk);
+    margin-bottom: 80px;
+  }
+  .topbar .dot { display:inline-block; width:7px; height:7px; background: var(--accent); border-radius:50%; margin-right: 10px; vertical-align: 2px; }
+  .topbar nav { display: flex; gap: 24px; }
+  .topbar a { color: var(--mute-dk); text-decoration: none; }
+  .topbar a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 56px;
+    align-items: end;
+    padding-bottom: 80px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero h1 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 160px;
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+    font-weight: 800;
+    margin: 0;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .meta {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 26px;
+    line-height: 1.35;
+    color: var(--mute-dk);
+    letter-spacing: -0.01em;
+  }
+  .hero .meta b { color: var(--ink); font-weight: 600; }
+  .hero .meta hr { border: none; border-top: 1px solid var(--line); margin: 18px 0; }
+  .hero .meta .row {
+    display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute-dk);
+    padding: 8px 0;
+  }
+  .hero .meta .row b { color: var(--ink); font-weight: 500; }
+
+  /* SECTION */
+  section { margin-top: 120px; scroll-margin-top: 40px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 24px; margin-bottom: 48px;
+  }
+  .sec-head .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.18em; color: var(--mute-dk); text-transform: uppercase;
+  }
+  .sec-head h2 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 72px; line-height: 0.95; letter-spacing: -0.035em; font-weight: 700;
+    margin: 0;
+  }
+  .sec-head h2 .accent { color: var(--accent); }
+  .sec-head .line { flex: 1; height: 1px; background: var(--line); align-self: center; margin-bottom: 12px; }
+  .sec-intro {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 28px; line-height: 1.35; letter-spacing: -0.015em;
+    color: var(--mute-dk); max-width: 800px; margin: 0 0 56px;
+  }
+  .sec-intro b { color: var(--ink); font-weight: 600; }
+
+  /* CARDS */
+  .grid { display: grid; gap: 22px; }
+  .g-2 { grid-template-columns: 1fr 1fr; }
+  .g-3 { grid-template-columns: repeat(3, 1fr); }
+  .g-4 { grid-template-columns: repeat(4, 1fr); }
+  .g-12 { grid-template-columns: repeat(12, 1fr); }
+
+  .card { border-radius: 22px; background: #fff; border: 1px solid var(--line); overflow: hidden; }
+  .card.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .card.blue { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .card.paper { background: var(--paper-2); border-color: var(--line); }
+
+  /* WORDMARK + MONOGRAM (reused from logo) */
+  .wm {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; letter-spacing: -0.055em; line-height: 1;
+    display: inline-flex; align-items: baseline;
+  }
+  .wm .dot { color: var(--accent); margin-left: -0.02em; }
+  .card.blue .wm .dot, .card.dark .wm.mono-acc .dot { color: var(--accent); }
+
+  .stage {
+    min-height: 240px; display: flex; align-items: center; justify-content: center; padding: 48px 32px;
+  }
+  .meta {
+    border-top: 1px solid var(--line); padding: 16px 22px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute-dk);
+  }
+  .card.dark .meta { border-top-color: #1F1F1F; color: var(--mute); }
+  .card.blue .meta { border-top-color: rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); }
+  .meta .tag { color: var(--accent); }
+  .card.dark .meta .tag { color: var(--accent-soft); }
+  .card.blue .meta .tag { color: #fff; }
+
+  /* ============ 01 BRAND POSITIONING ============ */
+  .positioning {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 22px;
+  }
+  .promise {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 22px;
+    padding: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .promise .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-soft);
+    margin-bottom: 28px;
+  }
+  .promise h3 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 76px; line-height: 0.98; letter-spacing: -0.035em; font-weight: 700;
+    margin: 0;
+  }
+  .promise h3 .accent { color: var(--accent); }
+  .promise .orb {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,91,255,0.35), transparent 70%);
+    filter: blur(60px);
+    right: -200px; bottom: -200px;
+    pointer-events: none;
+  }
+
+  .values { display: grid; gap: 22px; grid-template-rows: repeat(3, 1fr); }
+  .value {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .value .n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.14em; color: var(--mute-dk);
+    width: 32px;
+  }
+  .value .h {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1;
+    flex: 1;
+  }
+  .value .d {
+    color: var(--mute-dk); font-size: 15px; line-height: 1.45;
+    flex: 1.4;
+  }
+
+  /* Pillar cards */
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 22px; }
+  .pillar {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 36px 32px 32px;
+    aspect-ratio: 1 / 1.1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .pillar .icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: var(--paper-2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    color: var(--ink); font-size: 22px;
+  }
+  .pillar.featured { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pillar.featured .icon { background: var(--accent); color: #fff; }
+  .pillar.featured .d { color: var(--mute); }
+  .pillar .h {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 38px; line-height: 1; letter-spacing: -0.025em; font-weight: 600;
+    margin: 0 0 10px;
+  }
+  .pillar .d { color: var(--mute-dk); font-size: 16px; line-height: 1.45; margin: 0; }
+
+  /* ============ 02 LOGO ============ */
+  .logo-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 22px; }
+  .logo-main {
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px;
+    aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-main .wm { font-size: 220px; }
+  .logo-side { display: grid; grid-template-rows: 1fr 1fr; gap: 22px; }
+  .logo-side .card { display: flex; flex-direction: column; }
+  .logo-side .stage { flex: 1; }
+
+  .monogram-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 22px; }
+  .mono-box {
+    border-radius: 22px;
+    aspect-ratio: 1/1;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; font-size: 140px; letter-spacing: -0.05em; line-height: 1;
+  }
+  .mono-box .acc {
+    position: absolute; right: 14%; bottom: 18%;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .mono-box.ink { background: var(--ink); color: var(--paper); }
+  .mono-box.paper { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .mono-box.blue { background: var(--accent); color: #fff; }
+  .mono-box.blue .acc { background: #fff; }
+  .mono-box.round { border-radius: 50%; background: var(--ink); color: var(--paper); }
+
+  /* ============ 03 COLOR ============ */
+  .palette { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 22px; }
+  .swatch {
+    border-radius: 22px;
+    aspect-ratio: 0.9 / 1;
+    padding: 28px 30px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative;
+  }
+  .swatch.lg { aspect-ratio: auto; min-height: 380px; padding: 36px 40px; }
+  .swatch .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .swatch .name {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 38px; letter-spacing: -0.02em; font-weight: 600; line-height: 1;
+  }
+  .swatch.lg .name { font-size: 76px; letter-spacing: -0.035em; font-weight: 700; }
+  .swatch .hex {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.06em;
+  }
+  .swatch.lg .hex { font-size: 18px; }
+  .sw-ink { background: var(--ink); color: var(--paper); }
+  .sw-paper { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+  .sw-accent { background: var(--accent); color: #fff; }
+  .sw-accent2 { background: var(--accent-2); color: #fff; }
+  .sw-soft { background: var(--accent-soft); color: var(--ink); }
+  .sw-mute { background: var(--paper-2); color: var(--ink); border: 1px solid var(--line); }
+  .sw-line { background: #1F1F1F; color: #B7B7BC; }
+
+  .ratio {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    overflow: hidden;
+  }
+  .ratio-bar {
+    height: 64px;
+    display: flex;
+  }
+  .ratio-bar > div {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .ratio-bar .b-ink { background: var(--ink); color: var(--paper); flex: 60; }
+  .ratio-bar .b-paper { background: var(--paper); color: var(--ink); flex: 30; }
+  .ratio-bar .b-accent { background: var(--accent); color: #fff; flex: 10; }
+  .ratio-cap {
+    padding: 18px 24px; display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mute-dk);
+    border-top: 1px solid var(--line);
+  }
+
+  /* ============ 04 TYPOGRAPHY ============ */
+  .type-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; }
+  .type-display {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 22px;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 540px;
+  }
+  .type-display .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-soft);
+  }
+  .type-display .specimen {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 180px; line-height: 0.88; letter-spacing: -0.05em; font-weight: 800;
+  }
+  .type-display .specimen .accent { color: var(--accent); }
+  .type-display .row {
+    display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+    padding-top: 28px; border-top: 1px solid #1F1F1F;
+  }
+  .type-display .row b { color: var(--paper); font-weight: 500; }
+
+  .type-scale {
+    background: #fff; border: 1px solid var(--line); border-radius: 22px;
+    padding: 40px 44px;
+  }
+  .type-scale .item { display: flex; align-items: baseline; gap: 18px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .type-scale .item:first-child { border-top: none; padding-top: 0; }
+  .type-scale .k {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mute-dk); width: 96px;
+  }
+  .type-scale .v {
+    font-family: 'Inter Tight', sans-serif;
+    line-height: 1; letter-spacing: -0.025em; color: var(--ink); flex: 1;
+  }
+  .type-scale .v.t1 { font-size: 56px; font-weight: 700; }
+  .type-scale .v.t2 { font-size: 40px; font-weight: 600; }
+  .type-scale .v.t3 { font-size: 28px; font-weight: 500; }
+  .type-scale .v.t4 { font-size: 20px; font-weight: 400; }
+  .type-scale .v.t5 { font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute-dk); }
+  .type-scale .px { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute-dk); }
+
+  .charset {
+    margin-top: 22px;
+    background: var(--paper-2);
+    border-radius: 22px;
+    padding: 56px 64px;
+  }
+  .charset .label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute-dk); margin-bottom: 28px; }
+  .charset .row {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 48px; letter-spacing: -0.02em; font-weight: 500;
+    line-height: 1.1;
+    word-spacing: 8px;
+  }
+
+  /* ============ 05 VOICE ============ */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .voice-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 22px;
+    padding: 44px 48px;
+  }
+  .voice-card.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .voice-card h4 {
+    font-family: 'Inter Tight', sans-serif; font-size: 32px; letter-spacing: -0.02em; font-weight: 600;
+    margin: 0 0 24px;
+  }
+  .voice-card .label {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--mute-dk); margin-bottom: 10px;
+  }
+  .voice-card.dark .label { color: var(--accent-soft); }
+  .voice-card .line {
+    border-top: 1px solid var(--line);
+    padding: 18px 0;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .voice-card.dark .line { border-top-color: #1F1F1F; }
+  .voice-card .mark {
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 600; width: 24px;
+  }
+  .voice-card .yes { color: #2E9A65; }
+  .voice-card .no { color: #C74A4A; }
+  .voice-card .txt {
+    font-family: 'Inter Tight', sans-serif; font-size: 22px; letter-spacing: -0.01em; line-height: 1.3;
+  }
+
+  .tone-row {
+    margin-top: 22px;
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+  }
+  .tone {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 20px;
+    font-family: 'Inter Tight', sans-serif; font-size: 22px; letter-spacing: -0.015em; font-weight: 500;
+    text-align: center;
+  }
+  .tone:nth-child(3) { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tone:nth-child(5) { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* ============ 06 PATTERN / GRAPHIC ============ */
+  .pattern-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; }
+  .pat {
+    border-radius: 22px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+  }
+  .pat-grid {
+    background: var(--ink);
+    background-image:
+      linear-gradient(to right, rgba(45,91,255,0.25) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(45,91,255,0.25) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .pat-grid::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 30%, transparent 0, var(--ink) 75%);
+  }
+  .pat-stripes {
+    background: var(--accent);
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 24px);
+  }
+  .pat-trails {
+    background: var(--ink);
+    display: flex; flex-direction: column; justify-content: center; gap: 14px;
+    padding: 40px;
+  }
+  .pat-trails span {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent));
+    display: block;
+  }
+  .pat-trails span:nth-child(odd) { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45)); }
+  .pat-trails span:nth-child(3n) { height: 3px; }
+
+  .pat-label {
+    position: absolute; left: 24px; bottom: 22px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.85);
+    z-index: 2;
+  }
+  .pat-label.dark { color: #18181B; }
+
+  /* ============ 07 APPLICATIONS ============ */
+  .apps-1 { display: grid; grid-template-columns: 1.3fr 1fr; gap: 22px; }
+  .apps-2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; margin-top: 22px; }
+
+  /* business card */
+  .bcard {
+    aspect-ratio: 1.75 / 1;
+    border-radius: 18px;
+    padding: 36px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+  }
+  .bcard.front { background: var(--ink); color: var(--paper); }
+  .bcard.back { background: var(--accent); color: #fff; align-items: center; justify-content: center; }
+  .bcard .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .bcard .name { font-family: 'Inter Tight', sans-serif; font-size: 28px; letter-spacing: -0.025em; font-weight: 600; margin: 0; }
+  .bcard .role { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); margin-top: 6px; }
+  .bcard .contact { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--paper); line-height: 1.7; }
+  .bcard .contact .k { color: var(--mute); width: 60px; display: inline-block; }
+  .bcard.back .wm { font-size: 120px; }
+
+  /* social post mocks */
+  .post {
+    aspect-ratio: 1 / 1;
+    border-radius: 22px;
+    padding: 56px 48px 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .post.dark { background: var(--ink); color: var(--paper); }
+  .post.blue { background: var(--accent); color: #fff; }
+  .post.paper { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+  .post .label {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7;
+  }
+  .post .post-mark {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.05em;
+  }
+  .post .post-mark .dot { color: var(--accent); }
+  .post.blue .post-mark .dot { color: #fff; }
+  .post h5 {
+    font-family: 'Inter Tight', sans-serif; font-size: 56px; line-height: 0.98; letter-spacing: -0.035em; font-weight: 700;
+    margin: 0;
+  }
+  .post .footer {
+    display: flex; justify-content: space-between; align-items: end;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .post .footer .blue-tag { color: var(--accent); }
+  .post.dark .footer .blue-tag { color: var(--accent-soft); }
+  .post.blue .footer { color: rgba(255,255,255,0.8); }
+
+  /* tee / merch */
+  .merch-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 22px; }
+  .tee {
+    background: var(--paper-2);
+    border-radius: 22px;
+    aspect-ratio: 1.4 / 1;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .tee-shape {
+    width: 68%;
+    aspect-ratio: 1 / 1.15;
+    background: var(--ink);
+    clip-path: polygon(20% 0, 30% 10%, 70% 10%, 80% 0, 100% 18%, 88% 32%, 80% 28%, 80% 100%, 20% 100%, 20% 28%, 12% 32%, 0 18%);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tee-shape .wm { font-size: 84px; color: var(--paper); }
+
+  .web {
+    background: var(--ink);
+    border-radius: 22px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    color: var(--paper);
+    position: relative;
+  }
+  .web .bar { height: 38px; background: var(--ink-2); display: flex; align-items: center; padding: 0 14px; gap: 7px; border-bottom: 1px solid #232327; }
+  .web .bar .b { width: 9px; height: 9px; border-radius: 50%; background: #2C2C30; }
+  .web .url { flex: 1; height: 20px; background: #232327; border-radius: 5px; margin-left: 14px; padding: 0 10px; display: flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7A7A80; }
+  .web .body { padding: 28px 36px; display: flex; flex-direction: column; gap: 16px; height: calc(100% - 38px); }
+  .web .nav { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #B7B7BC; }
+  .web .nav .links { display: flex; gap: 16px; }
+  .web .nav .mark { font-family: 'Inter Tight', sans-serif; font-size: 18px; font-weight: 800; color: var(--paper); letter-spacing: -0.05em; }
+  .web .nav .mark .dot { color: var(--accent); }
+  .web h6 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 56px; line-height: 0.96; letter-spacing: -0.035em; font-weight: 800;
+    margin: 12px 0 0;
+  }
+  .web h6 em { color: var(--accent); font-style: normal; }
+  .web .sub { color: #8A8A8F; font-size: 15px; max-width: 70%; margin: 0; line-height: 1.4; }
+  .web .pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #2A2A2E; border-radius: 999px; padding: 6px 12px; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #B7B7BC; width: fit-content; }
+  .web .pill .d { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* Footer */
+  .footer-sig {
+    margin-top: 160px;
+    padding-top: 64px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .footer-sig .wm { font-size: 180px; color: var(--ink); }
+  .footer-sig .right {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute-dk);
+    line-height: 2;
+  }
+  .footer-sig .right b { color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <div class="topbar">
+      <div><span class="dot"></span>NILBU — BRAND GUIDELINES</div>
+      <nav>
+        <a href="#positioning">01 Posizionamento</a>
+        <a href="#logo">02 Logo</a>
+        <a href="#color">03 Colore</a>
+        <a href="#type">04 Type</a>
+        <a href="#voice">05 Voice</a>
+        <a href="#pattern">06 Pattern</a>
+        <a href="#apps">07 Applicazioni</a>
+      </nav>
+      <div>V1.0 · 2026</div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1>Brand<br>Identity<span class="accent">.</span></h1>
+      <div class="meta">
+        Il sistema completo per comunicare <b>NILBU</b>. Tono, colore, tipografia, applicazioni. Un solo file. Una sola voce.
+        <hr>
+        <div class="row"><span>Documento</span><b>V1.0 · 2026</b></div>
+        <div class="row"><span>Autore</span><b>Studio NILBU</b></div>
+        <div class="row"><span>Status</span><b>Approvato</b></div>
+      </div>
+    </div>
+
+    <!-- 01 POSITIONING -->
+    <section id="positioning">
+      <div class="sec-head">
+        <span class="num">01</span>
+        <h2>Posizionamento<span class="accent">.</span></h2>
+        <div class="line"></div>
+      </div>
+      <p class="sec-intro">Chi siamo, in una frase. <b>Una web agency che usa l'AI per consegnare siti moderni in settimane, non in mesi.</b> Tutto il resto della brand discende da qui.</p>
+
+      <div class="positioning">
+        <div class="promise">
+          <div class="orb"></div>
+          <div class="label">PROMESSA DI BRAND</div>
+          <h3>Siti web moderni,<br>creati più<br><span class="accent">velocemente.</span></h3>
+        </div>
+
+        <div class="values">
+          <div class="value">
+            <span class="n">A</span>
+            <span class="h">Target</span>
+            <span class="d">Piccole aziende, attività locali e freelancer che vogliono apparire moderni e attirare più clienti online.</span>
+          </div>
+          <div class="value">
+            <span class="n">B</span>
+            <span class="h">Mission</span>
+            <span class="d">Rendere il design premium accessibile e veloce. Usiamo l'AI per togliere attriti, non per togliere cura.</span>
+          </div>
+          <div class="value">
+            <span class="n">C</span>
+            <span class="h">Personalità</span>
+            <span class="d">Premium ma diretta. Tecnologica ma calda. Sicura senza essere arrogante.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="icon">→</div>
+          <div>
+            <h4 class="h">Velocità</h4>
+            <p class="d">Online in settimane, non in mesi. Tempo è valore.</p>
+          </div>
+        </div>
+        <div class="pillar featured">
+          <div class="icon">◆</div>
+          <div>
+            <h4 class="h">Design moderno</h4>
+            <p class="d">Estetica cinematografica. Lo stesso livello dei brand di oggi.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="icon">★</div>
+          <div>
+            <h4 class="h">AI smart</h4>
+            <p class="d">Strumento al servizio della cura. Velocità senza compromessi.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="icon">○</div>
+          <div>
+            <h4 class="h">Semplicità</h4>
+            <p class="d">Linguaggio chiaro, processo lineare. Niente tecnicismi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 LOGO -->
+    <section id="logo">
+      <div class="sec-head">
+        <span class="num">02</span>
+        <h2>Logo<span class="accent">.</span></h2>
+        <div class="line"></div>
+      </div>
+      <p class="sec-intro">Wordmark in <b>Inter Tight ExtraBold</b>, minuscolo, tracking −5.5%. Un punto blu accent chiude il nome — un click, una pausa, un timer che si chiude.</p>
+
+      <div class="logo-grid">
+        <div class="logo-main">
+          <span class="wm">nilbu<span class="dot">.</span></span>
+        </div>
+        <div class="logo-side">
+          <div class="card paper">
+            <div class="stage"><span class="wm" style="font-size: 100px; color: var(--ink);">nilbu<span class="dot">.</span></span></div>
+            <div class="meta"><span>Su paper</span><span class="tag">#F5F4F1</span></div>
+          </div>
+          <div class="card blue">
+            <div class="stage"><span class="wm" style="font-size: 100px; color: #fff;">nilbu<span class="dot" style="color: #fff;">.</span></span></div>
+            <div class="meta"><span>Su accent</span><span class="tag">#2D5BFF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="monogram-row">
+        <div>
+          <div class="mono-box ink">N<span class="acc"></span></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color: var(--mute-dk); margin-top: 14px; letter-spacing:.12em; text-transform: uppercase;">App icon · Scuro</div>
+        </div>
+        <div>
+          <div class="mono-box paper">N<span class="acc"></span></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color: var(--mute-dk); margin-top: 14px; letter-spacing:.12em; text-transform: uppercase;">App icon · Chiaro</div>
+        </div>
+        <div>
+          <div class="mono-box blue">N<span class="acc"></span></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color: var(--mute-dk); margin-top: 14px; letter-spacing:.12em; text-transform: uppercase;">App icon · Brand</div>
+        </div>
+        <div>
+          <div class="mono-box round">N<span class="acc"></span></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color: var(--mute-dk); margin-top: 14px; letter-spacing:.12em; text-transform: uppercase;">Avatar · Round</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 COLOR -->
+    <section id="color">
+      <div class="sec-head">
+        <span class="num">03</span>
+        <h2>Colore<span class="accent">.</span></h2>
+        <div class="line"></div>
+      </div>
+      <p class="sec-intro">Una palette stretta, due colori dominanti e un accento. <b>Nero e bianco soft</b> portano il peso del 90% delle composizioni. Il <b>blu Nilbu</b> è il segnale: usato con misura per attirare l'occhio dove conta.</p>
+
+      <div class="palette">
+        <div class="swatch sw-ink lg">
+          <span class="lbl">Primario · Ink</span>
+          <div>
+            <div class="name">Nilbu Nero</div>
+            <div style="margin-top: 18px; opacity:0.6; font-size: 14px; line-height: 1.5; max-width: 360px;">Sfondo principale. Cinema, fiducia, profondità. Mai puro #000.</div>
+          </div>
+          <div class="hex">#0A0A0A · RGB 10 10 10</div>
+        </div>
+        <div class="swatch sw-paper">
+          <span class="lbl">Paper</span>
+          <div class="name">Soft<br>White</div>
+          <div class="hex">#F5F4F1</div>
+        </div>
+        <div class="swatch sw-accent">
+          <span class="lbl">Accent</span>
+          <div class="name">Nilbu<br>Blue</div>
+          <div class="hex">#2D5BFF</div>
+        </div>
+        <div class="swatch sw-mute">
+          <span class="lbl">Surface</span>
+          <div class="name">Stone</div>
+          <div class="hex">#ECEAE4</div>
+        </div>
+        <div class="swatch sw-line">
+          <span class="lbl">Ink Line</span>
+          <div class="name">Carbon</div>
+          <div class="hex">#1F1F1F</div>
+        </div>
+      </div>
+
+      <div class="ratio">
+        <div class="ratio-bar">
+          <div class="b-ink">60% INK</div>
+          <div class="b-paper">30% PAPER</div>
+          <div class="b-accent">10% ACCENT</div>
+        </div>
+        <div class="ratio-cap">
+          <span>Regola 60 / 30 / 10</span>
+          <span>L'accent non riempie. Punta.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 TYPOGRAPHY -->
+    <section id="type">
+      <div class="sec-head">
+        <span class="num">04</span>
+        <h2>Tipografia<span class="accent">.</span></h2>
+        <div class="line"></div>
+      </div>
+      <p class="sec-intro"><b>Inter Tight</b> per tutto ciò che parla. <b>JetBrains Mono</b> per etichette, codice e dettagli funzionali. Una coppia che bilancia rigore tecnico e calore moderno.</p>
+
+      <div class="type-grid">
+        <div class="type-display">
+          <div class="label">DISPLAY · INTER TIGHT 800</div>
+          <div class="specimen">Aa<span class="accent">.</span></div>
+          <div class="row">
+            <span>Inter Tight</span>
+            <b>Light / Regular / Medium / Semibold / Bold / ExtraBold</b>
+          </div>
+        </div>
+
+        <div class="type-scale">
+          <div class="item">
+            <span class="k">Display</span>
+            <span class="v t1">Velocità</span>
+            <span class="px">128 / 700</span>
+          </div>
+          <div class="item">
+            <span class="k">Title</span>
+            <span class="v t2">Cosa ottieni</span>
+            <span class="px">64 / 600</span>
+          </div>
+          <div class="item">
+            <span class="k">Subtitle</span>
+            <span class="v t3">Più qualità in meno tempo.</span>
+            <span class="px">40 / 500</span>
+          </div>
+          <div class="item">
+            <span class="k">Body</span>
+            <span class="v t4">Creiamo siti web moderni per la tua attività.</span>
+            <span class="px">22 / 400</span>
+          </div>
+          <div class="item">
+            <span class="k">Mono / Tag</span>
+            <span class="v t5">01 — LA SOLUZIONE</span>
+            <span class="px">14 / 500</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="charset">
+        <div class="label">CHARSET · INTER TIGHT 500</div>
+        <div class="row">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+        <div class="row" style="opacity:0.7;">a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+        <div class="row" style="font-size: 32px; color: var(--mute-dk); margin-top: 16px;">0 1 2 3 4 5 6 7 8 9 &nbsp;&nbsp; . , : ; ! ? — / & @ €</div>
+      </div>
+    </section>
+
+    <!-- 05 VOICE -->
+    <section id="voice">
+      <div class="sec-head">
+        <span class="num">05</span>
+        <h2>Voice &amp; Tone<span class="accent">.</span></h2>
+        <div class="line"></div>
+      </div>
+      <p class="sec-intro">Parliamo come un consulente sicuro che ti spiega le cose al bar. <b>Frasi corte. Verbi attivi. Zero tecnicismi.</b> Quando scriviamo, leggiamo ad alta voce: se inciampa, riscriviamo.</p>
+
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="label">SCRIVIAMO COSÌ</div>
+          <h4>Sì, va bene.</h4>
+          <div class="line"><span class="mark yes">✓</span><span class="txt">"Creiamo siti web più velocemente."</span></div>
+          <div class="line"><span class="mark yes">✓</span><span class="txt">"Online in settimane, non in mesi."</span></div>
+          <div class="line"><span class="mark yes">✓</span><span class="txt">"La tua attività merita un sito moderno."</span></div>
+          <div class="line"><span class="mark yes">✓</span><span class="txt">"Più qualità in meno tempo."</span></div>
+        </div>
+
+        <div class="voice-card dark">
+          <div class="label">EVITIAMO</div>
+          <h4>No, mai così.</h4>
+          <div class="line"><span class="mark no">✕</span><span class="txt">"Soluzioni full-stack scalabili per il tuo digital business."</span></div>
+          <div class="line"><span class="mark no">✕</span><span class="txt">"Sfruttiamo LLM proprietari per ottimizzare il workflow."</span></div>
+          <div class="line"><span class="mark no">✕</span><span class="txt">"Rivoluziona il tuo brand con la nostra metodologia."</span></div>
+          <div class="line"><span class="mark no">✕</span><span class="txt">"Discover the power of next-gen web solutions."</span></div>
+        </div>
+      </div>
+
+      <div class="tone-row">
+        <div class="tone">Premium</div>
+        <div class="tone">Semplice</div>
+        <div class="tone">Sicuro</div>
+        <div class="tone">Diretto</div>
+        <div class="tone">Moderno</div>
+        <div class="tone">Caldo</div>
+      </div>
+    </section>
+
+    <!-- 06 PATTERN -->
+    <section id="pattern">
+      <div class="sec-head">
+        <span class="num">06</span>
+        <h2>Sistema grafico<span class="accent">.</span></h2>
+        <div class="line"></div>
+      </div>
+      <p class="sec-intro">Pochi elementi, ricombinati. <b>Griglia tecnica, scie di velocità, punto blu.</b> Tre asset che funzionano da soli e insieme — abbastanza per costruire infiniti layout senza mai sembrare uguali.</p>
+
+      <div class="pattern-grid">
+        <div class="pat pat-grid">
+          <span class="pat-label">01 · Tech grid</span>
+        </div>
+        <div class="pat pat-trails">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span class="pat-label">02 · Speed trails</span>
+        </div>
+        <div class="pat pat-stripes">
+          <span class="pat-label">03 · Brand fill</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 APPLICATIONS -->
+    <section id="apps">
+      <div class="sec-head">
+        <span class="num">07</span>
+        <h2>Applicazioni<span class="accent">.</span></h2>
+        <div class="line"></div>
+      </div>
+      <p class="sec-intro">Stessa identità, tre superfici. <b>Web, social, materiali fisici.</b> Le proporzioni cambiano, la regola 60/30/10 e i due font restano costanti.</p>
+
+      <!-- Row 1: web + cards -->
+      <div class="apps-1">
+        <div class="web">
+          <div class="bar">
+            <div class="b"></div><div class="b"></div><div class="b"></div>
+            <div class="url">nilbu.com</div>
+          </div>
+          <div class="body">
+            <div class="nav">
+              <span class="mark">nilbu<span class="dot">.</span></span>
+              <div class="links"><span>Studio</span><span>Lavori</span><span>Prezzi</span><span>Contatti</span></div>
+            </div>
+            <div class="pill"><span class="d"></span>WEB AGENCY · POWERED BY AI</div>
+            <h6>Siti web moderni<br>creati più <em>velocemente.</em></h6>
+            <p class="sub">Design premium, AI smart, consegna in settimane. Non in mesi.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 22px;">
+          <div class="bcard front">
+            <div class="top">
+              <span class="wm" style="font-size: 28px; color: var(--paper);">nilbu<span class="dot">.</span></span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform: uppercase; color: var(--mute);">2026</span>
+            </div>
+            <div>
+              <h4 class="name">Marco Bianchi</h4>
+              <div class="role">Founder · Designer</div>
+            </div>
+            <div class="contact">
+              <span class="k">M</span> marco@nilbu.com<br>
+              <span class="k">T</span> +39 333 555 0102<br>
+              <span class="k">W</span> nilbu.com
+            </div>
+          </div>
+          <div class="bcard back">
+            <span class="wm">nilbu<span class="dot" style="color:#fff;">.</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: social posts -->
+      <div class="apps-2">
+        <div class="post dark">
+          <div style="display:flex; justify-content:space-between; align-items: flex-start;">
+            <div class="label">CASE · 01</div>
+            <span class="post-mark">nilbu<span class="dot">.</span></span>
+          </div>
+          <h5>Siti che <span style="color: var(--accent);">funzionano.</span><br>Dal primo click.</h5>
+          <div class="footer">
+            <span>03 → 10 NOV 2026</span>
+            <span class="blue-tag">VIEW CASE</span>
+          </div>
+        </div>
+
+        <div class="post blue">
+          <div style="display:flex; justify-content:space-between; align-items: flex-start;">
+            <div class="label">QUOTE</div>
+            <span class="post-mark">nilbu<span class="dot">.</span></span>
+          </div>
+          <h5>Più qualità.<br>In meno tempo.</h5>
+          <div class="footer">
+            <span>MANIFESTO</span>
+            <span>↗</span>
+          </div>
+        </div>
+
+        <div class="post paper">
+          <div style="display:flex; justify-content:space-between; align-items: flex-start;">
+            <div class="label" style="color: var(--mute-dk);">PROCESS</div>
+            <span class="post-mark" style="color: var(--ink);">nilbu<span class="dot">.</span></span>
+          </div>
+          <h5 style="color: var(--ink);">Quattro<br>passi.<br><span style="color: var(--accent);">Online.</span></h5>
+          <div class="footer" style="color: var(--mute-dk);">
+            <span>HOW IT WORKS</span>
+            <span class="blue-tag">01 / 04</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: merch -->
+      <div class="merch-row">
+        <div class="tee">
+          <div class="tee-shape">
+            <span class="wm">N<span class="dot">.</span></span>
+          </div>
+        </div>
+        <div class="card dark" style="display: flex; flex-direction: column;">
+          <div class="stage" style="flex: 1; padding: 60px;">
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 24px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-soft);">EMAIL SIGNATURE</div>
+              <div>
+                <span class="wm" style="font-size: 44px; color: var(--paper);">nilbu<span class="dot">.</span></span>
+              </div>
+              <div style="font-family:'Inter Tight',sans-serif; font-size: 22px; color: var(--paper); font-weight: 500;">Marco Bianchi · Founder</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size: 13px; color: var(--mute); line-height: 1.8;">
+                marco@nilbu.com<br>
+                +39 333 555 0102<br>
+                nilbu.com
+              </div>
+              <div style="border-top: 1px solid #1F1F1F; padding-top: 14px; font-family:'JetBrains Mono',monospace; font-size: 11px; color: var(--mute); letter-spacing:.14em; text-transform: uppercase;">
+                Siti web moderni · creati più velocemente
+              </div>
+            </div>
+          </div>
+          <div class="meta"><span>Firma email</span><span class="tag">.eml · .html</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer-sig">
+      <span class="wm">nilbu<span class="dot">.</span></span>
+      <div class="right">
+        <div>BRAND GUIDELINES V1.0</div>
+        <div><b>info@nilbu.com</b></div>
+        <div>2026 — TUTTI I DIRITTI RISERVATI</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

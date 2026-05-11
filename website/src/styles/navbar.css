@@ -1,0 +1,131 @@
+/* ── Logo – always visible, top-left ── */
+.nav-logo-link {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.5rem;
+  z-index: 1000;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* ── Island – top-center, static pill ── */
+.nav-island {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background: var(--ink-2);
+  border: 1.5px solid var(--line-dk);
+  border-radius: 999px;
+}
+
+/* ── Menu button ── */
+.nav-menu-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn-cont {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-menu-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.nav-menu-btn svg {
+  overflow: visible;
+  display: block;
+}
+
+/* ── Overlay ── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+}
+
+.nav-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+}
+
+/* ── Panel – drops from top-center ── */
+.nav-panel {
+  position: absolute;
+  top: 5rem;
+  left: 50%;
+  background: var(--ink-2);
+  border: 1.5px solid var(--line-dk);
+  border-radius: 18px;
+  padding: 6px;
+  width: 90vw;
+  max-width: 380px;
+}
+
+/* ── Links ── */
+.nav-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--mute);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.nav-menu-link + .nav-menu-link {
+  border-top: 1px solid var(--line-dk);
+  border-radius: 0;
+}
+
+.nav-menu-link:first-child { border-radius: 10px 10px 0 0; }
+.nav-menu-link:last-child  { border-radius: 0 0 10px 10px; }
+.nav-menu-link:only-child  { border-radius: 10px; }
+
+.nav-menu-link:hover { color: var(--paper); }
+
+.nav-menu-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  border-radius: 10px;
+}
+
+.nav-link-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--line-dk);
+  transition: color 0.15s;
+}
+
+.nav-menu-link:hover .nav-link-num { color: var(--mute); }

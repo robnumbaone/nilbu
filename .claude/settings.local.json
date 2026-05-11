@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx skills *)",
+      "Bash(mkdir -p \"/Users/robertmursa/Desktop/Nilbu 2/.claude/skills\")",
+      "Read(//Users/robertmursa/.claude/skills/**)"
+    ]
+  }
+}
