@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import Servizi from './pages/Servizi'
 import Navbar from './components/Navbar'
 
 const Placeholder = ({ label }) => (
@@ -15,7 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/"           element={<Home />} />
         <Route path="/chi-siamo"  element={<Placeholder label="chi siamo" />} />
-        <Route path="/servizi"    element={<Placeholder label="servizi" />} />
+        <Route path="/servizi"    element={<Servizi />} />
         <Route path="/contattaci" element={<Placeholder label="contattaci" />} />
       </Routes>
     </BrowserRouter>

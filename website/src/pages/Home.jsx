@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import HeroParticles from '../components/HeroParticles'
-import ServiziScroll from '../components/ServiziScroll'
+import HomeApproccio from '../components/HomeApproccio'
 import '../styles/home.css'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
@@ -79,7 +79,7 @@ export default function Home() {
           <span className="h-eyebrow">consulenza · ai · web · dati</span>
 
           <h1 className="h-headline" aria-hidden="true" style={{ opacity: 0 }}>
-            il partner tech<br />per chi cresce.
+            il partner tech<br />per chi cresce<span style={{ color: 'var(--accent)' }}></span>
           </h1>
 
           <p className="h-sub">
@@ -98,9 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      <ServiziScroll />
-
-      <section className="h-spacer" />
+      <HomeApproccio />
     </main>
   )
 }
