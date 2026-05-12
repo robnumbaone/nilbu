@@ -129,3 +129,15 @@
 }
 
 .nav-menu-link:hover .nav-link-num { color: var(--mute); }
+
+/* ── Scroll state ── */
+.nav-island {
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.nav-island--scrolled {
+  background: rgba(20, 20, 20, 0.92);
+  border-color: rgba(45, 91, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}

@@ -4,7 +4,12 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import HeroParticles from '../components/HeroParticles'
+import HomeIntro from '../components/HomeIntro'
+import HomePerChi from '../components/HomePerChi'
+import HomeDifferenze from '../components/HomeDifferenze'
 import HomeApproccio from '../components/HomeApproccio'
+import HomeCtaFinale from '../components/HomeCtaFinale'
+import HomeFooter from '../components/HomeFooter'
 import '../styles/home.css'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
@@ -71,20 +76,20 @@ export default function Home() {
   }, [])
 
   return (
-    <main ref={heroRef}>
-      <section className="h-hero">
+    <main>
+      <section ref={heroRef} className="h-hero">
         <HeroParticles />
 
         <div className="h-hero-inner">
           <span className="h-eyebrow">consulenza · ai · web · dati</span>
 
           <h1 className="h-headline" aria-hidden="true" style={{ opacity: 0 }}>
-            il partner tech<br />per chi cresce<span style={{ color: 'var(--accent)' }}></span>
+            il partner tech<br />per chi cresce<span className="h-dot">.</span>
           </h1>
 
           <p className="h-sub">
             siti che funzionano, automazioni che ottimizzano,<br />
-            risultati che si vedono.
+            risultati che si vedono<span className="h-dot">.</span>
           </p>
 
           <div className="h-actions">
@@ -98,7 +103,12 @@ export default function Home() {
         </div>
       </section>
 
+      <HomeIntro />
+      <HomePerChi />
+      <HomeDifferenze />
       <HomeApproccio />
+      <HomeCtaFinale />
+      <HomeFooter />
     </main>
   )
 }

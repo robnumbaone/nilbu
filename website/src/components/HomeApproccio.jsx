@@ -5,10 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const STEPS = [
-  { id: 'c0', num: '01', label: 'brief',    desc: 'ascoltiamo, capiamo, definiamo gli obiettivi' },
-  { id: 'c1', num: '02', label: 'design',   desc: 'wireframe, visual, UI system su misura' },
-  { id: 'c2', num: '03', label: 'sviluppo', desc: 'codice pulito, veloce, scalabile' },
-  { id: 'c3', num: '04', label: 'lancio',   desc: 'live, seguito, ottimizzato nel tempo' },
+  { id: 'c0', num: '01', label: 'brief',          desc: 'prima di tutto, capire. obiettivi, vincoli, contesto. solo così si parte nel verso giusto' },
+  { id: 'c1', num: '02', label: 'design',          desc: 'struttura prima, estetica dopo. UI costruita per funzionare — non solo per essere vista' },
+  { id: 'c2', num: '03', label: 'sviluppo',        desc: 'codice pulito, architettura solida, performance misurate. non costruiamo cose da buttare' },
+  { id: 'c3', num: '04', label: 'lancio — e dopo', desc: 'andiamo live quando è pronto. poi monitoriamo, aggiorniamo, ottimizziamo. il lavoro continua' },
 ]
 
 export default function HomeApproccio() {
@@ -60,15 +60,15 @@ export default function HomeApproccio() {
         <div className="ha-stage-inner">
           <div className="ha-header">
             <span className="ha-eyebrow">// approccio</span>
-            <h2 className="ha-headline">come lavoriamo</h2>
+            <h2 className="ha-headline">come lavoriamo<span className="h-dot">.</span></h2>
           </div>
           <div className="ha-cards">
             {STEPS.map((s) => (
               <div key={s.id} className="ha-card">
                 <span className="ha-card-num">{s.num}</span>
                 <div className="ha-card-body">
-                  <h3 className="ha-card-label">{s.label}</h3>
-                  <p className="ha-card-desc">{s.desc}</p>
+                  <h3 className="ha-card-label">{s.label}<span className="h-dot">.</span></h3>
+                  <p className="ha-card-desc">{s.desc}<span className="h-dot">.</span></p>
                 </div>
               </div>
             ))}

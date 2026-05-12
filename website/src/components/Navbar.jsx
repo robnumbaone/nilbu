@@ -5,17 +5,36 @@ import Logo from './Logo'
 import '../styles/navbar.css'
 
 const links = [
-  { to: '/chi-siamo',  label: 'chi siamo',   num: '01' },
-  { to: '/servizi',    label: 'servizi',     num: '02' },
-  { to: '/contattaci', label: 'contattaci',  num: '03' },
+  { to: '/chi-siamo',  label: 'chi siamo',  num: '01' },
+  { to: '/servizi',    label: 'servizi',    num: '02' },
+  { to: '/contattaci', label: 'contattaci', num: '03' },
 ]
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen]     = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const openRef    = useRef(false)
   const tlRef      = useRef(null)
   const overlayRef = useRef(null)
 
+  // Entry animation — logo + island drop in after hero starts
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+    gsap.set(['.nav-logo-link', '.nav-island'], { y: -20, opacity: 0 })
+    gsap.to(['.nav-logo-link', '.nav-island'], {
+      y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.08, delay: 1.3,
+    })
+  }, [])
+
+  // Scroll tracking for island style
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Menu animation timeline
   useEffect(() => {
     gsap.set('.nav-panel', {
       autoAlpha: 0,
@@ -30,32 +49,18 @@ export default function Navbar() {
       .set(overlayRef.current, { pointerEvents: 'auto' })
       .to('.bar-mid', { opacity: 0, duration: 0.15, ease: 'power2.in', easeReverse: true }, 0)
       .to('.bar-top', {
-        attr: { x1: 3, y1: 3, x2: 13, y2: 13 },
-        duration: 0.28,
-        ease: 'power3.inOut',
+        attr: { x1: 3, y1: 3, x2: 13, y2: 13 }, duration: 0.28, ease: 'power3.inOut',
       }, 0)
       .to('.bar-bot', {
-        attr: { x1: 13, y1: 3, x2: 3, y2: 13 },
-        duration: 0.28,
-        ease: 'power3.inOut',
+        attr: { x1: 13, y1: 3, x2: 3, y2: 13 }, duration: 0.28, ease: 'power3.inOut',
       }, 0)
       .to('.nav-backdrop', { opacity: 1, duration: 0.3, ease: 'power2.out' }, 0)
       .to('.nav-panel', {
-        autoAlpha: 1,
-        xPercent: -50,
-        yPercent: 0,
-        scale: 1,
-        duration: 0.55,
-        ease: 'back.out(2)',
-        easeReverse: 'power3.out',
+        autoAlpha: 1, xPercent: -50, yPercent: 0, scale: 1,
+        duration: 0.55, ease: 'back.out(2)', easeReverse: 'power3.out',
       }, 0.05)
       .to('.nav-menu-link', {
-        opacity: 1,
-        y: 0,
-        duration: 0.28,
-        ease: 'power2.out',
-        easeReverse: true,
-        stagger: 0.05,
+        opacity: 1, y: 0, duration: 0.28, ease: 'power2.out', easeReverse: true, stagger: 0.05,
       }, 0.15)
 
     return () => tlRef.current?.kill()
@@ -93,7 +98,7 @@ export default function Navbar() {
         <Logo size={22} />
       </Link>
 
-      <div className="nav-island">
+      <div className={`nav-island${scrolled ? ' nav-island--scrolled' : ''}`}>
         <button
           className="nav-menu-btn"
           onClick={toggle}

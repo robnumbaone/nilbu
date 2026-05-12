@@ -20,3 +20,5 @@
   --r-hero: 22px;
   --r-icon: 28px;
 }
+
+.h-dot { color: var(--accent); }
