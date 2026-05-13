@@ -71,7 +71,7 @@ export default function HomeFooter() {
       </div>
 
       <div className="hf-bottom">
-        <span className="hf-copy">© 2025 nilbu</span>
+        <span className="hf-copy">© 2026 nilbu</span>
         <Link to="/privacy" className="hf-legal">privacy policy</Link>
       </div>
     </footer>

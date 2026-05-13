@@ -63,6 +63,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  pointer-events: auto;
 }
 
 /* ── HeroSmoke ──────────────────────────────────────────────────────────────── */
@@ -99,7 +100,7 @@
   inset: 0;
   background: transparent;
   overflow: hidden;
-  pointer-events: none;
+  pointer-events: auto;
   z-index: 0;
 }
 
@@ -123,13 +124,6 @@
   pointer-events: none;
 }
 
-/* re-enable pointer events on hero so particles track mouse */
-.h-hero {
-  pointer-events: auto;
-}
-.h-particles-wrap {
-  pointer-events: auto;
-}
 
 /* ── Inner layout ───────────────────────────────────────────────────────────── */
 .h-hero-inner {
@@ -270,7 +264,7 @@
 /* ── Approccio ──────────────────────────────────────────────────────────────── */
 .ha-section {
   position: relative;
-  height: 450vh;
+  height: 280vh;
   background: transparent;
 }
 
@@ -286,28 +280,27 @@
   background: rgba(0,0,0,0.78);
 }
 
+/* Static grid — no animation */
 .ha-stage::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
-  background-size: 72px 72px;
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
   pointer-events: none;
   z-index: 0;
-  animation: dot-drift 60s linear infinite;
 }
 
 .ha-stage::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(to top, #000, transparent);
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
   pointer-events: none;
   z-index: 1;
 }
@@ -320,13 +313,14 @@
   padding: 0 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 28px;
 }
 
+/* Header */
 .ha-header {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .ha-eyebrow {
@@ -347,63 +341,139 @@
   color: var(--paper);
 }
 
+/* Meta row */
+.ha-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ha-meta-phase {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--accent-soft);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+/* Stacked phase numbers — all in same grid cell */
+.ha-phase-nums {
+  display: inline-grid;
+  font-family: var(--font-mono);
+}
+
+.ha-phase-num { grid-area: 1 / 1; }
+
+.ha-meta-sep {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--mute-dk);
+}
+
+
+/* Progress bar */
+.ha-progress-track {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 1px;
+}
+
+.ha-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 1px;
+  will-change: width;
+}
+
+/* Cards container */
 .ha-cards {
   display: flex;
-  gap: 14px;
+  gap: 8px;
   align-items: stretch;
+  height: 240px;
 }
 
+/* Individual card */
 .ha-card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 28px 24px;
-  background: #161616;
-  border: 1px solid #272727;
-  border-radius: 20px;
-  transform-origin: center center;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  min-height: 240px;
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
+  background: #161616;
+  border: 1px solid #272727;
+  will-change: flex-grow;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
-.ha-card::before {
-  content: '';
+/* Compact view (inactive) */
+.ha-card-compact {
   position: absolute;
-  top: 0;
-  left: 28px;
-  right: 28px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent);
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 18px;
   pointer-events: none;
 }
 
+/* Full view (active) */
+.ha-card-full {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px 26px;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+/* Compact content */
 .ha-card-num {
   font-family: var(--font-mono);
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1;
   color: #2E2E2E;
-  transition: color 0.4s ease;
 }
 
-.ha-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.ha-card-label-sm {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--mute);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ha-card-del-mini {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--mute-dk);
   margin-top: auto;
-  padding-top: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Full/active content */
 .ha-card-label {
   font-family: var(--font-display);
-  font-size: clamp(15px, 1.4vw, 19px);
+  font-size: clamp(17px, 1.7vw, 24px);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   line-height: 1.1;
   color: var(--paper);
 }
@@ -411,9 +481,24 @@
 .ha-card-desc {
   font-family: var(--font-body);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--mute);
+  flex: 1;
 }
+
+.ha-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ha-card-deliverable {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--accent-soft);
+}
+
 
 /* ── HomeIntro ──────────────────────────────────────────────────────────────── */
 .hi-section {
@@ -710,88 +795,46 @@
   color: var(--paper);
 }
 
-.hd-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  counter-reset: hd-counter;
-  /* perspective for card tilt — each card scales from its own center */
-}
-
-/* Card group focus: dim siblings when one card is hovered */
-.hd-grid--focused .hd-card:not(:hover) {
-  opacity: 0.42;
-  filter: blur(0.4px);
-}
-
-/* Smooth transition for focus dimming — apply on all cards always */
-
-.hd-card {
-  position: relative;
+.hd-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 36px 32px;
-  background: var(--bg-surface);
-  border: 1px solid var(--line-dk);
-  border-radius: 20px;
-  transition: border-color 0.3s ease, background 0.3s ease, opacity 0.35s ease, filter 0.35s ease;
-  will-change: transform, opacity;
-  overflow: hidden;
-  counter-increment: hd-counter;
-  min-height: 260px;
 }
 
-.hd-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+.hd-row-wrap {
+  position: relative;
+}
+
+.hd-divider {
+  width: 100%;
   height: 1px;
-  background: linear-gradient(to right, var(--accent), rgba(45,91,255,0.3), transparent);
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  background: var(--line-dk);
+  transform-origin: left center;
 }
 
-.hd-card::after {
-  content: "0" counter(hd-counter);
-  position: absolute;
-  bottom: -20px;
-  right: 16px;
+.hd-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 32px 0;
+  cursor: default;
+}
+
+.hd-row-num {
   font-family: var(--font-mono);
-  font-size: 100px;
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 1;
-  color: rgba(255,255,255,0.028);
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-  transition: color 0.3s ease;
-}
-
-.hd-card:hover {
-  border-color: rgba(45, 91, 255, 0.25);
-  background: #0C0E1A;
-}
-
-.hd-card:hover::before { opacity: 1; }
-
-.hd-card:hover::after { color: rgba(45,91,255,0.06); }
-
-.hd-card-num {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   color: rgba(45,91,255,0.35);
+  padding-top: 3px;
+  transition: color 0.25s ease;
 }
 
-.hd-card-title {
-  position: relative;
-  z-index: 1;
+.hd-row-wrap:hover .hd-row-num {
+  color: var(--accent);
+}
+
+.hd-row-title {
   font-family: var(--font-display);
   font-size: clamp(17px, 1.5vw, 22px);
   font-weight: 700;
@@ -800,13 +843,17 @@
   color: var(--paper);
 }
 
-.hd-card-body {
-  position: relative;
-  z-index: 1;
+.hd-row-body {
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.65;
   color: var(--mute);
+  max-width: 420px;
+  transition: color 0.25s ease;
+}
+
+.hd-row-wrap:hover .hd-row-body {
+  color: var(--paper);
 }
 
 /* ── HomeCtaFinale ──────────────────────────────────────────────────────────── */
@@ -1045,27 +1092,18 @@
 }
 
 @media (max-width: 768px) {
-  .ha-section { height: 480vh; }
-  .ha-stage {
-    align-items: flex-start;
-    padding-top: 72px;
-  }
+  .ha-section { height: 280vh; }
   .ha-stage-inner {
     padding: 0 20px;
-    gap: 28px;
+    gap: 20px;
   }
-  /* stack cards absolutely so all 4 fit within 100dvh */
-  .ha-cards {
-    position: relative;
-    height: 180px;
-    gap: 0;
-  }
-  .ha-card {
-    position: absolute;
-    inset: 0;
-    min-height: 0;
-    padding: 20px 18px;
-  }
+  .ha-cards        { height: 180px; gap: 6px; }
+  .ha-card-compact { padding: 14px 12px; gap: 6px; }
+  .ha-card-full    { padding: 16px 14px; gap: 8px; }
+  .ha-card-num     { font-size: 22px; }
+  .ha-card-label   { font-size: clamp(14px, 3.5vw, 18px); }
+  .ha-card-desc    { font-size: 11.5px; line-height: 1.55; }
+  .ha-meta         { gap: 8px; }
 }
 
 @media (max-width: 560px) {
@@ -1085,7 +1123,8 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .ha-card-desc { font-size: 12px; }
+  .ha-card-desc { font-size: 11px; }
+  .ha-cards     { height: 160px; }
 }
 
 /* ── Responsive — new sections ──────────────────────────────────────────────── */
@@ -1116,7 +1155,12 @@
 }
 
 @media (max-width: 720px) {
-  .hd-grid { grid-template-columns: 1fr; }
+  .hd-row {
+    grid-template-columns: 44px 1fr;
+    gap: 0 20px;
+  }
+  .hd-row-num  { grid-row: 1 / 3; align-self: start; }
+  .hd-row-body { grid-column: 2; margin-top: 8px; max-width: none; }
 }
 
 @media (max-width: 560px) {
@@ -1168,9 +1212,7 @@
 /* ── Light theme overrides ──────────────────────────────────────────────────── */
 
 /* ha-stage — light version */
-[data-theme="light"] .ha-stage {
-  background: #ECEAE4;
-}
+[data-theme="light"] .ha-stage { background: #ECEAE4; }
 [data-theme="light"] .ha-stage::before {
   background-image:
     linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
@@ -1179,14 +1221,9 @@
 [data-theme="light"] .ha-stage::after {
   background: linear-gradient(to top, var(--bg-body), transparent);
 }
-[data-theme="light"] .ha-card {
-  background: #FFFFFF;
-  border-color: #D8D6CF;
-}
-[data-theme="light"] .ha-card::before {
-  background: linear-gradient(to right, transparent, rgba(0,0,0,0.07), transparent);
-}
-[data-theme="light"] .ha-card-num { color: #D5D3CC; }
+[data-theme="light"] .ha-card          { background: #FFFFFF; border-color: #D8D6CF; }
+[data-theme="light"] .ha-card-num      { color: #D5D3CC; }
+[data-theme="light"] .ha-progress-track { background: rgba(0,0,0,0.1); }
 
 /* Flat sections — remove dark overlay in light mode */
 [data-theme="light"] .hi-section  { background: transparent; }
@@ -1202,9 +1239,8 @@
   background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
 }
 
-/* hd-card decorative counter — invisible on white is fine, but darken a touch */
-[data-theme="light"] .hd-card::after { color: rgba(0,0,0,0.045); }
-[data-theme="light"] .hd-card:hover  { background: #F0EEE8; border-color: rgba(45,91,255,0.25); }
+/* hd-row — var(--line-dk) is already theme-aware */
+[data-theme="light"] .hd-row-num { color: rgba(45,91,255,0.45); }
 
 /* ── Reduced motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
@@ -1213,13 +1249,13 @@
   .bg-ilight,
   .bg-canvas,
   .hpc-section::before,
-  .hcf-section::before,
-  .ha-stage::before { animation: none !important; }
+  .hcf-section::before { animation: none !important; }
 
   .hcf-btn,
   .h-btn-primary,
   .h-btn-ghost,
-  .hd-card,
+  .hd-row-num,
+  .hd-row-body,
   .hpc-item-text,
   .hf-nav-link,
   .hf-email,

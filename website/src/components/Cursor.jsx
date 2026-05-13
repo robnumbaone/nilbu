@@ -6,7 +6,7 @@ import '../styles/cursor.css'
 function resolveState(target) {
   if (!target) return 'default'
   if (target.closest('.hcf-btn, .h-btn-primary')) return 'cta'
-  if (target.closest('.hd-card, .hpc-item, .ha-card')) return 'card'
+  if (target.closest('.hd-row-wrap, .hpc-item, .ha-card')) return 'card'
   if (target.closest('a, button, [role="button"]')) return 'link'
   return 'default'
 }
