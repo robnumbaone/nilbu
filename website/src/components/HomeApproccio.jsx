@@ -19,15 +19,24 @@ export default function HomeApproccio() {
       const section = sectionRef.current
       const cards = gsap.utils.toArray('.ha-card', section)
       const n = cards.length
+      const isMobile = window.matchMedia('(max-width: 768px)').matches
 
-      gsap.set(cards[0], { opacity: 1, scale: 1.02 })
-      gsap.set(cards.slice(1), { opacity: 0.18, scale: 0.92 })
+      if (isMobile) {
+        gsap.set(cards[0], { opacity: 1, scale: 1.02, zIndex: 2 })
+        gsap.set(cards.slice(1), { opacity: 0, scale: 0.92, zIndex: 1 })
+      } else {
+        gsap.set(cards[0], { opacity: 1, scale: 1.02 })
+        gsap.set(cards.slice(1), { opacity: 0.18, scale: 0.92 })
+      }
+
+      // end animation before section bottom → dwell time so card 04 stays visible
+      const endValue = `top+=${window.innerHeight * (isMobile ? 3.2 : 2.5)}`
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: 'bottom bottom',
+          end: endValue,
           scrub: 1,
         },
       })
@@ -35,14 +44,19 @@ export default function HomeApproccio() {
       for (let i = 1; i < n; i++) {
         const at = i - 1
         const isLast = i === n - 1
+        const activeScale = isLast ? 1.05 : 1.02
+        const activeBorder = isLast ? { borderColor: 'rgba(45, 91, 255, 0.4)' } : {}
 
-        tl.to(cards[i - 1], { opacity: 0.18, scale: 0.92, duration: 1 }, at)
-        tl.to(cards[i], {
-          opacity: 1,
-          scale: isLast ? 1.05 : 1.02,
-          ...(isLast ? { borderColor: 'rgba(45, 91, 255, 0.4)' } : {}),
-          duration: 1,
-        }, at)
+        if (isMobile) {
+          // sequential: out first, then in — no simultaneous opacity overlap
+          tl.set(cards[i], { zIndex: 2 }, at)
+          tl.to(cards[i - 1], { opacity: 0, scale: 0.92, duration: 0.5 }, at)
+          tl.to(cards[i], { opacity: 1, scale: activeScale, ...activeBorder, duration: 0.5 }, at + 0.5)
+          tl.set(cards[i - 1], { zIndex: 1 }, at + 0.75)
+        } else {
+          tl.to(cards[i - 1], { opacity: 0.18, scale: 0.92, duration: 1 }, at)
+          tl.to(cards[i], { opacity: 1, scale: activeScale, ...activeBorder, duration: 1 }, at)
+        }
       }
 
       tl.to(cards[n - 1].querySelector('.ha-card-num'), {

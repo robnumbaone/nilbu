@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import HeroParticles from '../components/HeroParticles'
+import HeroSmoke from '../components/HeroSmoke'
 import { useInteractionEffects } from '../hooks/useInteractionEffects'
 import HomeAmbient from '../components/HomeAmbient'
 import HomeIntro from '../components/HomeIntro'
@@ -80,6 +81,7 @@ export default function Home() {
     <main className="home-main">
       <HomeAmbient />
       <section ref={heroRef} className="h-hero">
+        <HeroSmoke />
         <HeroParticles />
 
         <div className="h-hero-inner">

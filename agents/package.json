@@ -1,0 +1,13 @@
+{
+  "name": "nilbu-agents",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "copy":      "node copy.js",
+    "component": "node component.js",
+    "review":    "node review.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0"
+  }
+}
