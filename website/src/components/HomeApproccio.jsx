@@ -6,9 +6,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 const STEPS = [
   { id: 'c0', num: '01', label: 'brief',          desc: 'prima di tutto, capire. obiettivi, vincoli, contesto. solo così si parte nel verso giusto' },
-  { id: 'c1', num: '02', label: 'design',          desc: 'struttura prima, estetica dopo. UI costruita per funzionare — non solo per essere vista' },
+  { id: 'c1', num: '02', label: 'design',          desc: 'struttura prima, estetica dopo. interfaccia progettata per funzionare, non solo per essere vista' },
   { id: 'c2', num: '03', label: 'sviluppo',        desc: 'codice pulito, architettura solida, performance misurate. non costruiamo cose da buttare' },
-  { id: 'c3', num: '04', label: 'lancio — e dopo', desc: 'andiamo live quando è pronto. poi monitoriamo, aggiorniamo, ottimizziamo. il lavoro continua' },
+  { id: 'c3', num: '04', label: 'lancio e supporto', desc: 'andiamo live quando è pronto. poi monitoriamo, aggiorniamo, ottimizziamo. il lavoro non finisce con la consegna' },
 ]
 
 export default function HomeApproccio() {

@@ -66,7 +66,7 @@ export default function HomeFooter() {
 
         <div className="hf-col hf-contact">
           <span className="hf-nav-label">contatti</span>
-          <a href="mailto:hello@nilbu.it" className="hf-email">hello@nilbu.it</a>
+          <a href="mailto:info@nilbu.com" className="hf-email">info@nilbu.com</a>
         </div>
       </div>
 

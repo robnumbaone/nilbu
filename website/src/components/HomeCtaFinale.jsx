@@ -37,12 +37,12 @@ export default function HomeCtaFinale() {
         },
       })
         .to(split.words, {
-          opacity: 1, yPercent: 0, duration: 0.75, ease: 'power3.out', stagger: 0.07,
+          opacity: 1, yPercent: 0, duration: 0.75, ease: 'expo.out', stagger: 0.07,
           onComplete: () => split.revert(),
         })
-        .to(body,    { opacity: 1, y: 0, duration: 0.6,  ease: 'power3.out' }, '-=0.35')
-        .to(actions, { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.3')
-        .to(micro,   { opacity: 1, y: 0, duration: 0.4,  ease: 'power3.out' }, '-=0.2')
+        .to(body,    { opacity: 1, y: 0, duration: 0.6,  ease: 'expo.out' }, '-=0.35')
+        .to(actions, { opacity: 1, y: 0, duration: 0.55, ease: 'expo.out' }, '-=0.3')
+        .to(micro,   { opacity: 1, y: 0, duration: 0.4,  ease: 'expo.out' }, '-=0.2')
     }, sectionRef)
 
     return () => ctx.revert()
@@ -52,11 +52,11 @@ export default function HomeCtaFinale() {
     <section ref={sectionRef} className="hcf-section">
       <div className="hcf-inner">
         <h2 className="hcf-headline" style={{ opacity: 0 }}>
-          hai un progetto<br />in testa?
+          hai un progetto<br />da realizzare?
         </h2>
         <p className="hcf-body">
-          raccontacelo. in mezz'ora capiamo insieme<br />
-          se possiamo essere il partner giusto per te<span className="h-dot">.</span>
+          scrivici cosa vuoi costruire. valutiamo insieme<br />
+          se siamo il partner giusto per te<span className="h-dot">.</span>
         </p>
         <div className="hcf-actions">
           <Link to="/contattaci" className="hcf-btn">parliamo</Link>

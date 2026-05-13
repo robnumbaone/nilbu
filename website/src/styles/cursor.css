@@ -1,0 +1,31 @@
+/* ── Hide system cursor when active ────────────────────────────────────────── */
+html.cursor-active,
+html.cursor-active * {
+  cursor: none !important;
+}
+
+/* ── Root — zero-size anchor, fixed top-left ────────────────────────────────── */
+.cur-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* ── Crosshair SVG ───────────────────────────────────────────────────────────── */
+.cur-crosshair {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  will-change: transform, opacity;
+  color: var(--paper);
+  overflow: visible;
+}
+
+@media (pointer: coarse) {
+  .cur-root { display: none; }
+}

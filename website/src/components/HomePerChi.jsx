@@ -40,10 +40,10 @@ export default function HomePerChi() {
           once: true,
         },
       })
-        .to(eyebrow,  { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' })
-        .to(headline, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.25')
-        .to(lead,     { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3')
-        .to(items, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out', stagger: 0.07 }, '-=0.2')
+        .to(eyebrow,  { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' })
+        .to(headline, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, '-=0.25')
+        .to(lead,     { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' }, '-=0.3')
+        .to(items, { opacity: 1, x: 0, duration: 0.5, ease: 'expo.out', stagger: 0.07 }, '-=0.2')
 
       items.forEach((item) => {
         const accent = item.querySelector('.hpc-item-accent')
@@ -67,9 +67,9 @@ export default function HomePerChi() {
         <div className="hpc-header">
           <span className="hpc-eyebrow">// per chi è</span>
           <h2 className="hpc-headline">
-            lavoriamo con chi sa cosa vuole<br />— o vuole capirlo<span className="h-dot">.</span>
+            costruiamo per chi ha<br />obiettivi chiari e standard alti<span className="h-dot">.</span>
           </h2>
-          <p className="hpc-lead">sei nel posto giusto se:</p>
+          <p className="hpc-lead">nilbu è il partner giusto se:</p>
         </div>
         <ul className="hpc-list" role="list">
           {ITEMS.map((item, i) => (

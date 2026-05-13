@@ -1,3 +1,59 @@
+/* ── Home main wrapper ──────────────────────────────────────────────────────── */
+.home-main {
+  position: relative;
+  background: var(--bg-body);
+}
+
+/* ── Background System ──────────────────────────────────────────────────────── */
+.bg-root {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Intelligence Layer — large scroll-driven blobs */
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Float orbs — smaller, ambient drift */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Interaction light — fixed, follows mouse */
+.bg-ilight {
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,91,255,0.088) 0%, rgba(45,91,255,0.02) 42%, transparent 65%);
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Data field canvas — fixed, always covers viewport */
+.bg-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
 /* ── Hero ───────────────────────────────────────────────────────────────────── */
 .h-hero {
   position: relative;
@@ -13,10 +69,11 @@
 .h-particles-wrap {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 130% 70% at 50% -15%, #0b1222 0%, #060912 50%, var(--ink) 100%);
+  background: radial-gradient(ellipse 130% 70% at 50% -15%, var(--hero-bg-start) 0%, var(--hero-bg-mid) 50%, var(--hero-bg-end) 100%);
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  transition: background 0.4s ease;
 }
 
 .h-particles-wrap .h-particles-noise {
@@ -69,7 +126,7 @@
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent-soft);
+  color: var(--hero-eyebrow);
 }
 
 .h-headline {
@@ -82,7 +139,7 @@
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.94;
-  color: var(--paper);
+  color: var(--hero-text);
 }
 
 .h-headline * {
@@ -97,7 +154,7 @@
   font-family: var(--font-body);
   font-size: clamp(15px, 1.2vw, 18px);
   line-height: 1.6;
-  color: var(--mute);
+  color: var(--hero-sub);
   max-width: 540px;
   margin: 0 auto;
 }
@@ -126,6 +183,7 @@
   padding: 14px 32px;
   border-radius: var(--r-chip);
   transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  position: relative;
 }
 
 .h-btn-primary:hover {
@@ -149,17 +207,17 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--mute);
+  color: var(--hero-sub);
   background: transparent;
   padding: 13px 28px;
   border-radius: var(--r-chip);
-  border: 1px solid var(--line-dk);
+  border: 1px solid var(--hero-border);
   transition: color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
 }
 
 .h-btn-ghost:hover {
-  color: var(--paper);
-  border-color: var(--mute-dk);
+  color: var(--hero-text);
+  border-color: var(--hero-border-hover);
   transform: translateY(-2px);
 }
 
@@ -186,7 +244,7 @@
 .ha-section {
   position: relative;
   height: 300vh;
-  background: #000;
+  background: transparent;
 }
 
 .ha-stage {
@@ -198,9 +256,38 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: rgba(0,0,0,0.78);
+}
+
+.ha-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 72px 72px;
+  pointer-events: none;
+  z-index: 0;
+  animation: dot-drift 60s linear infinite;
+}
+
+.ha-stage::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to top, #000, transparent);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .ha-stage-inner {
+  position: relative;
+  z-index: 2;
   width: 100%;
   max-width: 1200px;
   padding: 0 40px;
@@ -243,28 +330,44 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 26px 22px;
-  background: #0D0D0D;
-  border: 1px solid #1F1F1F;
-  border-radius: 18px;
+  padding: 28px 24px;
+  background: #161616;
+  border: 1px solid #272727;
+  border-radius: 20px;
   transform-origin: center center;
   will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  min-height: 200px;
+  min-height: 240px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ha-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 28px;
+  right: 28px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent);
+  pointer-events: none;
 }
 
 .ha-card-num {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: #444;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #2E2E2E;
+  transition: color 0.4s ease;
 }
 
 .ha-card-body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   margin-top: auto;
   padding-top: 20px;
 }
@@ -281,14 +384,28 @@
 .ha-card-desc {
   font-family: var(--font-body);
   font-size: 13px;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--mute);
 }
 
 /* ── HomeIntro ──────────────────────────────────────────────────────────────── */
 .hi-section {
-  background: #000;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0,0,0,0.45);
   padding: 0 0 120px;
+}
+
+.hi-section::before {
+  content: '';
+  position: absolute;
+  top: -160px;
+  left: -160px;
+  width: 720px;
+  height: 720px;
+  background: radial-gradient(circle, rgba(45,91,255,0.08) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hi-divider {
@@ -296,9 +413,13 @@
   height: 1px;
   background: linear-gradient(to right, var(--accent) 0%, rgba(45, 91, 255, 0.18) 28%, transparent 58%);
   transform-origin: left center;
+  position: relative;
+  z-index: 1;
 }
 
 .hi-inner {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -377,12 +498,27 @@
 
 /* ── HomePerChi ─────────────────────────────────────────────────────────────── */
 .hpc-section {
-  background: #000;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0,0,0,0.55);
   padding: 120px 0;
   border-top: 1px solid var(--line-dk);
 }
 
+.hpc-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.038) 1px, transparent 1px);
+  background-size: 38px 38px;
+  pointer-events: none;
+  z-index: 0;
+  animation: dot-drift 45s linear infinite;
+}
+
 .hpc-inner {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -434,23 +570,38 @@
 .hpc-item {
   position: relative;
   display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 16px;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
   align-items: center;
-  padding: 22px 0;
+  padding: 26px 12px 26px 0;
   border-bottom: 1px solid var(--line-dk);
   cursor: default;
   overflow: hidden;
+  transition: background 0.25s ease;
 }
+
+.hpc-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(45,91,255,0.04);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.hpc-item:hover::before { opacity: 1; }
 
 .hpc-item:first-child { border-top: 1px solid var(--line-dk); }
 
 .hpc-item-num {
   font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--line-dk);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(45,91,255,0.28);
   flex-shrink: 0;
   transition: color 0.25s ease;
+  letter-spacing: 0.04em;
 }
 
 .hpc-item:hover .hpc-item-num { color: var(--accent); }
@@ -477,12 +628,29 @@
 
 /* ── HomeDifferenze ─────────────────────────────────────────────────────────── */
 .hd-section {
-  background: #000;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0,0,0,0.4);
   padding: 120px 0;
   border-top: 1px solid var(--line-dk);
 }
 
+.hd-section::before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 700px;
+  background: radial-gradient(ellipse, rgba(45,91,255,0.055) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hd-inner {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -519,32 +687,86 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
+  counter-reset: hd-counter;
+  /* perspective for card tilt — each card scales from its own center */
 }
+
+/* Card group focus: dim siblings when one card is hovered */
+.hd-grid--focused .hd-card:not(:hover) {
+  opacity: 0.42;
+  filter: blur(0.4px);
+}
+
+/* Smooth transition for focus dimming — apply on all cards always */
 
 .hd-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 28px 24px;
-  background: #0D0D0D;
-  border: 1px solid #1F1F1F;
-  border-radius: 18px;
-  transition: border-color 0.3s ease;
+  gap: 18px;
+  padding: 36px 32px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-dk);
+  border-radius: 20px;
+  transition: border-color 0.3s ease, background 0.3s ease, opacity 0.35s ease, filter 0.35s ease;
   will-change: transform, opacity;
+  overflow: hidden;
+  counter-increment: hd-counter;
+  min-height: 260px;
 }
 
-.hd-card:hover { border-color: rgba(45, 91, 255, 0.25); }
+.hd-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), rgba(45,91,255,0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.hd-card::after {
+  content: "0" counter(hd-counter);
+  position: absolute;
+  bottom: -20px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 100px;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  color: rgba(255,255,255,0.028);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: color 0.3s ease;
+}
+
+.hd-card:hover {
+  border-color: rgba(45, 91, 255, 0.25);
+  background: #0C0E1A;
+}
+
+.hd-card:hover::before { opacity: 1; }
+
+.hd-card:hover::after { color: rgba(45,91,255,0.06); }
 
 .hd-card-num {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
-  color: #444;
+  color: rgba(45,91,255,0.35);
 }
 
 .hd-card-title {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
-  font-size: clamp(16px, 1.4vw, 20px);
+  font-size: clamp(17px, 1.5vw, 22px);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -552,21 +774,38 @@
 }
 
 .hd-card-body {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-body);
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 13.5px;
+  line-height: 1.65;
   color: var(--mute);
 }
 
 /* ── HomeCtaFinale ──────────────────────────────────────────────────────────── */
 .hcf-section {
-  background: radial-gradient(ellipse 60% 55% at 50% 50%, #0A1230 0%, #000 70%);
+  position: relative;
+  overflow: hidden;
+  background: rgba(0,0,0,0.35);
   padding: 140px 0;
   border-top: 1px solid var(--line-dk);
   text-align: center;
 }
 
+.hcf-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+  animation: dot-drift 50s linear infinite, cta-pulse 6s ease-in-out infinite;
+}
+
 .hcf-inner {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
@@ -613,6 +852,23 @@
   padding: 16px 44px;
   border-radius: var(--r-chip);
   transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.hcf-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-chip);
+  box-shadow: 0 0 42px 8px rgba(45, 91, 255, 0.45);
+  opacity: 0;
+  animation: cta-glow-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cta-glow-pulse {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: 1; }
 }
 
 .hcf-btn:hover {
@@ -635,7 +891,7 @@
 
 /* ── HomeFooter ─────────────────────────────────────────────────────────────── */
 .hf-footer {
-  background: #000;
+  background: var(--bg-body);
   padding: 80px 0 0;
 }
 
@@ -860,8 +1116,75 @@
   .hf-top-line { margin-bottom: 60px; }
 }
 
+/* ── Dot grid drift ─────────────────────────────────────────────────────────── */
+@keyframes dot-drift {
+  to { background-position: 38px 38px; }
+}
+
+/* ── CTA background pulse ───────────────────────────────────────────────────── */
+@keyframes cta-pulse {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: 1; }
+}
+
+/* ── Background — mobile reduce blur for GPU ────────────────────────────────── */
+@media (max-width: 768px) {
+  .bg-blob   { filter: blur(80px) !important; }
+  .bg-orb    { filter: blur(45px) !important; }
+  .bg-ilight { display: none; }
+}
+
+/* ── Light theme overrides ──────────────────────────────────────────────────── */
+
+/* ha-stage — light version */
+[data-theme="light"] .ha-stage {
+  background: #ECEAE4;
+}
+[data-theme="light"] .ha-stage::before {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+[data-theme="light"] .ha-stage::after {
+  background: linear-gradient(to top, var(--bg-body), transparent);
+}
+[data-theme="light"] .ha-card {
+  background: #FFFFFF;
+  border-color: #D8D6CF;
+}
+[data-theme="light"] .ha-card::before {
+  background: linear-gradient(to right, transparent, rgba(0,0,0,0.07), transparent);
+}
+[data-theme="light"] .ha-card-num { color: #D5D3CC; }
+
+/* Flat sections — remove dark overlay in light mode */
+[data-theme="light"] .hi-section  { background: transparent; }
+[data-theme="light"] .hpc-section { background: rgba(236, 234, 228, 0.6); }
+[data-theme="light"] .hd-section  { background: transparent; }
+[data-theme="light"] .hcf-section { background: rgba(236, 234, 228, 0.5); }
+
+/* Dot patterns — invert for light backgrounds */
+[data-theme="light"] .hpc-section::before {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+}
+[data-theme="light"] .hcf-section::before {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+
+/* hd-card decorative counter — invisible on white is fine, but darken a touch */
+[data-theme="light"] .hd-card::after { color: rgba(0,0,0,0.045); }
+[data-theme="light"] .hd-card:hover  { background: #F0EEE8; border-color: rgba(45,91,255,0.25); }
+
 /* ── Reduced motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+  .bg-blob,
+  .bg-orb,
+  .bg-ilight,
+  .bg-canvas,
+  .hpc-section::before,
+  .hcf-section::before,
+  .ha-stage::before { animation: none !important; }
+
   .hcf-btn,
   .h-btn-primary,
   .h-btn-ghost,

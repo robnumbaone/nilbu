@@ -141,3 +141,40 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
+
+[data-theme="light"] .nav-island--scrolled {
+  background: rgba(245, 244, 241, 0.92);
+  border-color: rgba(45, 91, 255, 0.2);
+}
+
+/* ── Theme toggle ── */
+.nav-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--line-dk);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+.nav-theme-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mute);
+  transition: color 0.2s ease;
+}
+
+.nav-theme-btn:hover { color: var(--paper); }
+
+.nav-theme-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

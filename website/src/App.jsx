@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Servizi from './pages/Servizi'
 import Navbar from './components/Navbar'
+import Cursor from './components/Cursor'
+import { ThemeProvider } from './hooks/useTheme.jsx'
 
 const Placeholder = ({ label }) => (
   <div style={{ color: 'var(--paper)', padding: '40px', fontFamily: 'var(--font-mono)' }}>
@@ -11,14 +13,17 @@ const Placeholder = ({ label }) => (
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/"           element={<Home />} />
-        <Route path="/chi-siamo"  element={<Placeholder label="chi siamo" />} />
-        <Route path="/servizi"    element={<Servizi />} />
-        <Route path="/contattaci" element={<Placeholder label="contattaci" />} />
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Cursor />
+        <Navbar />
+        <Routes>
+          <Route path="/"           element={<Home />} />
+          <Route path="/chi-siamo"  element={<Placeholder label="chi siamo" />} />
+          <Route path="/servizi"    element={<Servizi />} />
+          <Route path="/contattaci" element={<Placeholder label="contattaci" />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }

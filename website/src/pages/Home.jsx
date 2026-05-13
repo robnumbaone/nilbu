@@ -4,6 +4,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import HeroParticles from '../components/HeroParticles'
+import { useInteractionEffects } from '../hooks/useInteractionEffects'
+import HomeAmbient from '../components/HomeAmbient'
 import HomeIntro from '../components/HomeIntro'
 import HomePerChi from '../components/HomePerChi'
 import HomeDifferenze from '../components/HomeDifferenze'
@@ -15,6 +17,7 @@ import '../styles/home.css'
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
 export default function Home() {
+  useInteractionEffects()
   const heroRef = useRef(null)
 
   useLayoutEffect(() => {
@@ -38,14 +41,12 @@ export default function Home() {
         opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
       })
       .from(split.chars, {
-        duration: 0.9,
+        duration: 0.8,
         opacity: 0,
-        scale: 0,
-        y: 80,
-        rotationX: 180,
-        transformOrigin: '0% 50% -50',
-        ease: 'back.out(1.7)',
-        stagger: 0.03,
+        y: 52,
+        scale: 0.72,
+        ease: 'expo.out',
+        stagger: 0.025,
         onComplete: () => {
           split.revert()
           headlineEl.removeAttribute('aria-hidden')
@@ -76,7 +77,8 @@ export default function Home() {
   }, [])
 
   return (
-    <main>
+    <main className="home-main">
+      <HomeAmbient />
       <section ref={heroRef} className="h-hero">
         <HeroParticles />
 

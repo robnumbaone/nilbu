@@ -44,7 +44,9 @@ export default function HomeDifferenze() {
       }
 
       gsap.set([eyebrow, headline], { opacity: 0, y: 24 })
-      gsap.set(cards, { opacity: 0, y: 36 })
+      cards.forEach((card, i) => {
+        gsap.set(card, { opacity: 0, y: 20, x: i % 2 === 0 ? -22 : 22 })
+      })
 
       gsap.timeline({
         scrollTrigger: {
@@ -53,9 +55,20 @@ export default function HomeDifferenze() {
           once: true,
         },
       })
-        .to(eyebrow,  { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' })
-        .to(headline, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.25')
-        .to(cards, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out', stagger: 0.1 }, '-=0.3')
+        .to(eyebrow,  { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' })
+        .to(headline, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, '-=0.25')
+        .to(cards, { opacity: 1, y: 0, x: 0, duration: 0.7, ease: 'expo.out', stagger: 0.09 }, '-=0.3')
+
+      gsap.to(sectionRef.current.querySelector('.hd-header'), {
+        yPercent: -10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+      })
     }, sectionRef)
 
     return () => ctx.revert()

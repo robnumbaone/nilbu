@@ -39,11 +39,11 @@ export default function HomeIntro() {
           once: true,
         },
       })
-        .to(divider,  { scaleX: 1, duration: 0.9, ease: 'power3.out' })
-        .to(eyebrow,  { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.5')
-        .to(headline, { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, '-=0.3')
-        .to(body,     { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }, '-=0.35')
-        .to(points,   { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.1 }, '-=0.3')
+        .to(divider,  { scaleX: 1, duration: 0.9, ease: 'expo.out' })
+        .to(eyebrow,  { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' }, '-=0.5')
+        .to(headline, { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out' }, '-=0.3')
+        .to(body,     { opacity: 1, y: 0, duration: 0.65, ease: 'expo.out' }, '-=0.35')
+        .to(points,   { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out', stagger: 0.1 }, '-=0.3')
     }, sectionRef)
 
     return () => ctx.revert()
@@ -60,10 +60,10 @@ export default function HomeIntro() {
             un partner operativo<span className="h-dot">.</span>
           </h2>
           <p className="hi-body">
-            nilbu lavora con aziende che vogliono costruire qualcosa di solido —
-            non una presenza digitale di servizio, ma un sistema che porta risultati.
+            nilbu lavora con aziende che vogliono costruire qualcosa di solido:
+            non una presenza digitale di facciata, ma un sistema che genera risultati.
             strategia, design e sviluppo in un unico interlocutore.
-            concreto, disponibile, capace di guidare<span className="h-dot">.</span>
+            preciso, disponibile, capace di guidare<span className="h-dot">.</span>
           </p>
         </div>
         <div className="hi-col-right">
