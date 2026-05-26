@@ -1,0 +1,242 @@
+/* ── shared page styles (ChiSiamo, Contattaci, ecc.) ── */
+
+.pg-main {
+  min-height: 100svh;
+}
+
+/* HERO */
+.pg-hero {
+  padding: 140px 48px 80px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pg-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.pg-headline {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+  margin-bottom: 24px;
+}
+
+.pg-dot {
+  color: var(--accent);
+}
+
+.pg-sub {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.65;
+  color: var(--mute);
+  max-width: 560px;
+}
+
+/* SECTIONS */
+.pg-section {
+  border-top: 1px solid var(--line-dk);
+}
+
+.pg-section-inner {
+  padding: 72px 48px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pg-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--mute);
+  margin-bottom: 32px;
+}
+
+.pg-body {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.75;
+  color: var(--paper);
+  max-width: 640px;
+}
+
+/* STORIA */
+.pg-storia {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* GRID VALORI */
+.pg-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.pg-card {
+  border: 1px solid var(--line-dk);
+  border-radius: var(--r-card);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pg-card-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.pg-card-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--mute);
+}
+
+/* CONTATTO LAYOUT */
+.pg-contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* FORM */
+.pg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pg-field-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.pg-input {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-dk);
+  border-radius: var(--r-chip);
+  padding: 14px 18px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--paper);
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+
+.pg-input::placeholder {
+  color: var(--mute-dk);
+}
+
+.pg-input:focus {
+  border-color: var(--accent);
+}
+
+.pg-textarea {
+  min-height: 140px;
+}
+
+.pg-submit {
+  align-self: flex-start;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-chip);
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.pg-submit:hover {
+  opacity: 0.85;
+}
+
+/* SENT STATE */
+.pg-sent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 48px 0;
+}
+
+.pg-sent-icon {
+  font-size: 28px;
+  color: var(--accent);
+}
+
+.pg-sent-text {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--paper);
+}
+
+/* CONTACT INFO */
+.pg-contact-info {
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pg-email {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 600;
+  color: var(--paper);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.pg-email:hover {
+  color: var(--accent);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .pg-hero {
+    padding: 120px 24px 60px;
+  }
+
+  .pg-section-inner {
+    padding: 48px 24px;
+  }
+
+  .pg-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .pg-contact-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}

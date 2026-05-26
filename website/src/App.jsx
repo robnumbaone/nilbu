@@ -1,15 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import ChiSiamo from './pages/ChiSiamo'
 import Servizi from './pages/Servizi'
+import Contattaci from './pages/Contattaci'
 import Navbar from './components/Navbar'
 import Cursor from './components/Cursor'
 import { ThemeProvider } from './hooks/useTheme.jsx'
-
-const Placeholder = ({ label }) => (
-  <div style={{ color: 'var(--paper)', padding: '40px', fontFamily: 'var(--font-mono)' }}>
-    {label} — in costruzione
-  </div>
-)
 
 export default function App() {
   return (
@@ -19,9 +15,9 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/"           element={<Home />} />
-          <Route path="/chi-siamo"  element={<Placeholder label="chi siamo" />} />
+          <Route path="/chi-siamo"  element={<ChiSiamo />} />
           <Route path="/servizi"    element={<Servizi />} />
-          <Route path="/contattaci" element={<Placeholder label="contattaci" />} />
+          <Route path="/contattaci" element={<Contattaci />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

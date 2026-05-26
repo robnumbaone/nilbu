@@ -52,16 +52,15 @@ export default function HomeCtaFinale() {
     <section ref={sectionRef} className="hcf-section">
       <div className="hcf-inner">
         <h2 className="hcf-headline" style={{ opacity: 0 }}>
-          hai un progetto<br />da realizzare?
+          costruiamo<br />insieme<span className="h-dot">?</span>
         </h2>
         <p className="hcf-body">
-          scrivici cosa vuoi costruire. valutiamo insieme<br />
-          se siamo il partner giusto per te<span className="h-dot">.</span>
+          raccontaci il progetto. valutiamo insieme se siamo il partner giusto — e se lo siamo, partiamo<span className="h-dot">.</span>
         </p>
         <div className="hcf-actions">
-          <Link to="/contattaci" className="hcf-btn">parliamo</Link>
+          <Link to="/contattaci" className="hcf-btn">inizia la conversazione</Link>
         </div>
-        <p className="hcf-micro">risposta entro 24 ore<span className="h-dot">.</span></p>
+        <p className="hcf-micro">prima consulenza gratuita · risposta entro 24 ore<span className="h-dot">.</span></p>
       </div>
     </section>
   )

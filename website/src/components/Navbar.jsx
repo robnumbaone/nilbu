@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { gsap } from 'gsap'
 import Logo from './Logo'
 import { useTheme } from '../hooks/useTheme.jsx'
@@ -162,16 +162,19 @@ export default function Navbar() {
         <div className="nav-backdrop" onClick={close} />
         <nav className="nav-panel">
           {links.map((l) => (
-            <Link
+            <NavLink
               key={l.to}
               to={l.to}
-              className="nav-menu-link"
+              end={l.to === '/'}
+              className={({ isActive }) =>
+                `nav-menu-link${isActive ? ' nav-menu-link--active' : ''}`
+              }
               tabIndex={isOpen ? 0 : -1}
               onClick={close}
             >
-              <span>{l.label}</span>
+              <span className="nav-link-label">{l.label}</span>
               <span className="nav-link-num">{l.num}</span>
-            </Link>
+            </NavLink>
           ))}
         </nav>
       </div>

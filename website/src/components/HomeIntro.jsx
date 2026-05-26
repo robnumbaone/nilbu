@@ -6,8 +6,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 const POINTS = [
   'un solo interlocutore per tutto il progetto',
-  'metodo chiaro, consegne rispettate',
-  'supporto continuo dopo il lancio',
+  'metodo trasparente, consegne rispettate',
+  'supporto attivo dopo il lancio',
 ]
 
 export default function HomeIntro() {
@@ -60,10 +60,7 @@ export default function HomeIntro() {
             un partner operativo<span className="h-dot">.</span>
           </h2>
           <p className="hi-body">
-            nilbu lavora con aziende che vogliono costruire qualcosa di solido:
-            non una presenza digitale di facciata, ma un sistema che genera risultati.
-            strategia, design e sviluppo in un unico interlocutore.
-            preciso, disponibile, capace di guidare<span className="h-dot">.</span>
+            nilbu lavora con aziende che vogliono costruire qualcosa di solido: non una presenza digitale di facciata, ma sistemi che generano risultati reali. web, AI e dati in un unico interlocutore — preciso, diretto, capace di guidare senza perdersi in riunioni inutili<span className="h-dot">.</span>
           </p>
         </div>
         <div className="hi-col-right">

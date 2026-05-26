@@ -101,7 +101,8 @@
   font-weight: 400;
   font-size: 1rem;
   line-height: 1;
-  transition: color 0.15s;
+  transition: color 0.15s, background 0.15s;
+  position: relative;
 }
 
 .nav-menu-link + .nav-menu-link {
@@ -114,6 +115,24 @@
 .nav-menu-link:only-child  { border-radius: 10px; }
 
 .nav-menu-link:hover { color: var(--paper); }
+
+.nav-menu-link--active {
+  color: var(--paper);
+  background: rgba(45, 91, 255, 0.06);
+}
+
+.nav-menu-link--active .nav-link-label::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
 
 .nav-menu-link:focus-visible {
   outline: 2px solid var(--accent);
@@ -128,7 +147,8 @@
   transition: color 0.15s;
 }
 
-.nav-menu-link:hover .nav-link-num { color: var(--mute); }
+.nav-menu-link:hover .nav-link-num        { color: var(--mute); }
+.nav-menu-link--active .nav-link-num      { color: var(--accent); opacity: 0.6; }
 
 /* ── Scroll state ── */
 .nav-island {
