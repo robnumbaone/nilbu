@@ -50,10 +50,10 @@ export default function HomeFooter() {
           <span className="hf-logo">
             nilbu<span className="hf-logo-dot">.</span>
           </span>
-          <p className="hf-tagline">il partner tech per chi cresce<span className="h-dot">.</span></p>
+          <p className="hf-tagline">il digitale, fatto bene<span className="h-dot">.</span></p>
           <p className="hf-desc">
-            siti performanti, automazioni e sistemi digitali<br />
-            per aziende che vogliono crescere con ordine e qualità<span className="h-dot">.</span>
+            siti web, AI e analisi dei dati per le imprese
+            che vogliono crescere online con ordine e qualità<span className="h-dot">.</span>
           </p>
         </div>
 

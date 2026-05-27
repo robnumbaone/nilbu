@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 76" fill="none">
+  <rect width="220" height="76" rx="6" fill="#0A0A0A"/>
+  <text
+    font-family="'Inter Tight', system-ui, sans-serif"
+    font-weight="800"
+    font-size="44"
+    letter-spacing="-0.03em"
+    x="24"
+    y="52"
+  >
+    <tspan fill="#F5F4F1">nilbu</tspan><tspan fill="#2D5BFF">.</tspan>
+  </text>
+</svg>

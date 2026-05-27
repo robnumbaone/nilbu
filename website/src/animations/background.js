@@ -97,7 +97,7 @@ export function initGradientEngine(blobs, orbs) {
     { sel: '.hi-section',  idx: 1 },
     { sel: '.hpc-section', idx: 2 },
     { sel: '.hd-section',  idx: 3 },
-    { sel: '.ha-section',  idx: 4 },
+    { sel: '.ha2-section', idx: 4 },
     { sel: '.hcf-section', idx: 5 },
   ]
 

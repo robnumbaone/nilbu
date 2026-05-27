@@ -6,85 +6,100 @@ gsap.registerPlugin(ScrollTrigger)
 
 const STEPS = [
   {
-    id: 'c0', num: '01', label: 'brief',
-    desc: 'prima di tutto, capire. obiettivi, vincoli, contesto. solo così si parte nel verso giusto',
-    deliverable: 'brief doc',
+    num: '01',
+    label: 'brief.',
+    desc: 'prima di tutto, capire. obiettivi, vincoli, contesto. solo così si parte nel verso giusto.',
+    deliverable: 'brief operativo',
   },
   {
-    id: 'c1', num: '02', label: 'design',
-    desc: 'struttura prima, estetica dopo. interfaccia progettata per funzionare, non solo per essere vista',
-    deliverable: 'prototipo',
+    num: '02',
+    label: 'design.',
+    desc: 'struttura prima, estetica dopo. interfaccia progettata per funzionare, non solo per essere vista.',
+    deliverable: 'prototipo interattivo',
   },
   {
-    id: 'c2', num: '03', label: 'sviluppo',
-    desc: 'codice pulito, architettura solida, performance misurate. non costruiamo cose da buttare',
+    num: '03',
+    label: 'sviluppo.',
+    desc: 'codice pulito, architettura solida, performance misurate. non costruiamo cose da buttare.',
     deliverable: 'build live',
   },
   {
-    id: 'c3', num: '04', label: 'lancio e supporto',
-    desc: 'andiamo live quando è pronto. poi monitoriamo, aggiorniamo, ottimizziamo. il lavoro non finisce con la consegna',
-    deliverable: 'go-live + 3 mesi',
+    num: '04',
+    label: 'lancio e supporto.',
+    desc: 'andiamo live quando è pronto. poi monitoriamo, aggiorniamo, ottimizziamo. il lavoro non finisce con la consegna.',
+    deliverable: 'go-live + supporto',
   },
 ]
 
 export default function HomeApproccio() {
-  const sectionRef = useRef(null)
+  const sectionRef      = useRef(null)
+  const progressLineRef = useRef(null)
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-      const section   = sectionRef.current
-      const cards     = gsap.utils.toArray('.ha-card', section)
-      const compacts  = gsap.utils.toArray('.ha-card-compact', section)
-      const fulls     = gsap.utils.toArray('.ha-card-full', section)
-      const phaseNums = gsap.utils.toArray('.ha-phase-num', section)
-      const progFill  = section.querySelector('.ha-progress-fill')
-      const n = cards.length
+      const eyebrow  = sectionRef.current.querySelector('.ha2-eyebrow')
+      const headline = sectionRef.current.querySelector('.ha2-headline')
+      const context  = sectionRef.current.querySelector('.ha2-context')
+      const dividers = gsap.utils.toArray('.ha2-divider', sectionRef.current)
+      const rows     = gsap.utils.toArray('.ha2-row', sectionRef.current)
+      const pills    = gsap.utils.toArray('.ha2-del', sectionRef.current)
+      const pLine    = progressLineRef.current
 
-      // Initial state — card 0 active
-      gsap.set(cards[0],           { flexGrow: 2.5 })
-      gsap.set(cards.slice(1),     { flexGrow: 1 })
-      gsap.set(compacts[0],        { opacity: 0 })
-      gsap.set(compacts.slice(1),  { opacity: 1 })
-      gsap.set(fulls[0],           { opacity: 1 })
-      gsap.set(fulls.slice(1),     { opacity: 0 })
-      gsap.set(phaseNums[0],       { opacity: 1 })
-      gsap.set(phaseNums.slice(1), { opacity: 0 })
-      gsap.set(progFill,           { width: `${100 / n}%` })
+      if (prefersReduced) {
+        gsap.set([eyebrow, headline, context, ...rows], { opacity: 1, y: 0 })
+        gsap.set(dividers, { scaleX: 1 })
+        gsap.set(pills, { scale: 1, opacity: 1 })
+        if (pLine) gsap.set(pLine, { scaleY: 1 })
+        return
+      }
+
+      // Progress line — scrub driven
+      if (pLine) {
+        gsap.set(pLine, { scaleY: 0, transformOrigin: 'top center' })
+        gsap.to(pLine, {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 55%',
+            end:   'bottom 75%',
+            scrub: 1.4,
+          },
+        })
+      }
+
+      gsap.set([eyebrow, headline, context], { opacity: 0, y: 28 })
+      gsap.set(dividers, { scaleX: 0, transformOrigin: 'left center' })
+      gsap.set(rows,  { opacity: 0, y: 32 })
+      gsap.set(pills, { scale: 0.8, opacity: 0 })
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: `top+=${window.innerHeight * 1.7}`,
-          scrub: 1.2,
+          trigger: sectionRef.current,
+          start: 'top 80%',
+          once: true,
         },
       })
 
-      for (let i = 1; i < n; i++) {
-        const at = i - 1
+      tl.to(eyebrow,  { opacity: 1, y: 0, duration: 0.55, ease: 'expo.out' })
+        .to(headline, { opacity: 1, y: 0, duration: 0.8,  ease: 'expo.out' }, '-=0.3')
+        .to(context,  { opacity: 1, y: 0, duration: 0.65, ease: 'expo.out' }, '-=0.45')
 
-        // Card expand / collapse
-        tl.to(cards[i - 1], { flexGrow: 1,   duration: 0.7 }, at)
-        tl.to(cards[i],     { flexGrow: 2.5, duration: 0.7 }, at + 0.1)
+      // Divider → row → pill rhythm
+      dividers.slice(0, rows.length).forEach((div, i) => {
+        tl.to(div,     { scaleX: 1, duration: 0.5,  ease: 'power3.out' }, i === 0 ? '-=0.3' : '-=0.15')
+          .to(rows[i], { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }, '-=0.28')
+          .to(pills[i], {
+            scale: 1, opacity: 1,
+            duration: 0.5, ease: 'back.out(2)',
+          }, '-=0.28')
+      })
 
-        // Content swap
-        tl.to(fulls[i - 1],    { opacity: 0,  duration: 0.3  }, at)
-        tl.to(compacts[i - 1], { opacity: 1,  duration: 0.35 }, at + 0.15)
-        tl.to(compacts[i],     { opacity: 0,  duration: 0.3  }, at + 0.35)
-        tl.to(fulls[i],        { opacity: 1,  duration: 0.45 }, at + 0.5)
-
-        // Phase indicator
-        tl.to(phaseNums[i - 1], { opacity: 0, duration: 0.25 }, at + 0.2)
-        tl.to(phaseNums[i],     { opacity: 1, duration: 0.25 }, at + 0.45)
-
-        // Progress fill
-        tl.to(progFill, {
-          width: `${((i + 1) / n) * 100}%`,
-          duration: 0.7,
-          ease: 'none',
-        }, at + 0.15)
+      // Last closing divider
+      if (dividers[rows.length]) {
+        tl.to(dividers[rows.length], { scaleX: 1, duration: 0.5, ease: 'power3.out' }, '-=0.15')
       }
     }, sectionRef)
 
@@ -92,48 +107,37 @@ export default function HomeApproccio() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="ha-section">
-      <div className="ha-stage">
-        <div className="ha-stage-inner">
+    <section ref={sectionRef} className="ha2-section">
+      <div className="ha2-inner">
+        <div className="ha2-header">
+          <span className="ha2-eyebrow">// approccio</span>
+          <h2 className="ha2-headline">
+            come lavoriamo<span className="h-dot">.</span>
+          </h2>
+          <p className="ha2-context">
+            quattro fasi chiare.
+            ogni step produce un output concreto.
+          </p>
+        </div>
 
-          <div className="ha-header">
-            <span className="ha-eyebrow">// approccio</span>
-            <h2 className="ha-headline">come lavoriamo<span className="h-dot">.</span></h2>
-            <div className="ha-meta">
-              <span className="ha-meta-phase">
-                ── fase{' '}
-                <span className="ha-phase-nums">
-                  {STEPS.map((s) => (
-                    <span key={s.id} className="ha-phase-num">{s.num}</span>
-                  ))}
-                </span>
-                {' '}di 04
-              </span>
-            </div>
-            <div className="ha-progress-track">
-              <div className="ha-progress-fill" />
-            </div>
+        <div className="ha2-list">
+          {/* Vertical progress line */}
+          <div className="ha2-progress-track" aria-hidden="true">
+            <div ref={progressLineRef} className="ha2-progress-line" />
           </div>
 
-          <div className="ha-cards">
-            {STEPS.map((s) => (
-              <div key={s.id} className="ha-card">
-                <div className="ha-card-compact">
-                  <span className="ha-card-num">{s.num}</span>
-                  <span className="ha-card-label-sm">{s.label}</span>
-                  <span className="ha-card-del-mini">{s.deliverable}</span>
-                </div>
-                <div className="ha-card-full">
-                  <h3 className="ha-card-label">{s.label}<span className="h-dot">.</span></h3>
-                  <p className="ha-card-desc">{s.desc}<span className="h-dot">.</span></p>
-                  <div className="ha-card-info">
-                    <span className="ha-card-deliverable">deliverable · {s.deliverable}</span>
-                  </div>
-                </div>
+          {STEPS.map((s) => (
+            <div key={s.num} className="ha2-row-wrap">
+              <div className="ha2-divider" aria-hidden="true" />
+              <div className="ha2-row">
+                <span className="ha2-num">{s.num}</span>
+                <h3 className="ha2-label">{s.label}</h3>
+                <p className="ha2-desc">{s.desc}</p>
+                <span className="ha2-del">{s.deliverable}</span>
               </div>
-            ))}
-          </div>
-
+            </div>
+          ))}
+          <div className="ha2-divider" aria-hidden="true" />
         </div>
       </div>
     </section>
