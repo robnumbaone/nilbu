@@ -4,14 +4,12 @@ import ChiSiamo from './pages/ChiSiamo'
 import Servizi from './pages/Servizi'
 import Contattaci from './pages/Contattaci'
 import Navbar from './components/Navbar'
-import Cursor from './components/Cursor'
 import { ThemeProvider } from './hooks/useTheme.jsx'
 
 export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <Cursor />
         <Navbar />
         <Routes>
           <Route path="/"           element={<Home />} />

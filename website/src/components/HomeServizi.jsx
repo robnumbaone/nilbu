@@ -1,59 +1,124 @@
 import { useRef, useLayoutEffect } from 'react'
-import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const SERVICES = [
-  {
-    num: '01',
-    name: 'siti web.',
-    tag: 'design + performance',
-    desc: 'design, sviluppo e performance per prodotti e aziende.',
-  },
-  {
-    num: '02',
-    name: 'intelligenza artificiale.',
-    tag: 'automazione + AI',
-    desc: 'workflow AI, automazioni e strumenti utili davvero.',
-  },
-  {
-    num: '03',
-    name: 'analisi dei dati.',
-    tag: 'dati + decisioni',
-    desc: 'dashboard, tracking e insight per decisioni migliori.',
-  },
-]
+function BrowserMockup() {
+  return (
+    <svg viewBox="0 0 460 180" className="tile-viz" style={{ width: '60%', maxWidth: 460 }} aria-hidden="true">
+      <defs>
+        <linearGradient id="bm-fade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stopColor="rgba(13,13,13,0)" />
+          <stop offset="50%"  stopColor="rgba(13,13,13,0.5)" />
+          <stop offset="100%" stopColor="rgba(13,13,13,0.95)" />
+        </linearGradient>
+      </defs>
+      <g transform="translate(40,18)">
+        <rect x="0" y="0" width="420" height="160" rx="10" fill="#0a0a0a" stroke="#1F1F1F"/>
+        <circle cx="14" cy="14" r="3" fill="#3A3A3A"/>
+        <circle cx="26" cy="14" r="3" fill="#3A3A3A"/>
+        <circle cx="38" cy="14" r="3" fill="#3A3A3A"/>
+        <rect x="60" y="9" width="340" height="10" rx="3" fill="#141414"/>
+        <rect x="14" y="40" width="50"  height="6"  rx="2" fill="#2D5BFF"/>
+        <rect x="14" y="56" width="280" height="14" rx="2" fill="#F5F4F1"/>
+        <rect x="14" y="76" width="220" height="14" rx="2" fill="#F5F4F1" opacity="0.85"/>
+        <rect x="14" y="98"  width="160" height="6" rx="2" fill="#6B6B6B"/>
+        <rect x="14" y="110" width="200" height="6" rx="2" fill="#6B6B6B" opacity="0.6"/>
+        <rect x="14"  y="128" width="74" height="20" rx="6" fill="#2D5BFF"/>
+        <rect x="96"  y="128" width="62" height="20" rx="6" fill="none" stroke="#3A3A3A"/>
+        <rect x="0" y="0" width="420" height="160" fill="url(#bm-fade)" rx="10"/>
+      </g>
+    </svg>
+  )
+}
+
+function NetworkMockup() {
+  return (
+    <svg viewBox="0 0 240 200" className="tile-viz" style={{ width: '85%', right: '7.5%' }} aria-hidden="true">
+      <defs>
+        <linearGradient id="ng-stroke" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stopColor="rgba(45,91,255,0.6)"/>
+          <stop offset="100%" stopColor="rgba(45,91,255,0.1)"/>
+        </linearGradient>
+      </defs>
+      <g stroke="url(#ng-stroke)" strokeWidth="1" fill="none">
+        <line x1="40"  y1="40"  x2="120" y2="100"/>
+        <line x1="200" y1="40"  x2="120" y2="100"/>
+        <line x1="40"  y1="160" x2="120" y2="100"/>
+        <line x1="200" y1="160" x2="120" y2="100"/>
+        <line x1="40"  y1="40"  x2="200" y2="40"/>
+        <line x1="40"  y1="160" x2="200" y2="160"/>
+        <line x1="120" y1="100" x2="120" y2="30"/>
+        <line x1="120" y1="100" x2="120" y2="180"/>
+      </g>
+      <g>
+        <circle cx="40"  cy="40"  r="6" fill="#B7C4FF"/>
+        <circle cx="200" cy="40"  r="6" fill="#B7C4FF"/>
+        <circle cx="40"  cy="160" r="6" fill="#B7C4FF"/>
+        <circle cx="200" cy="160" r="6" fill="#B7C4FF"/>
+        <circle cx="120" cy="30"  r="4" fill="#6A8BFF"/>
+        <circle cx="120" cy="180" r="4" fill="#6A8BFF"/>
+        <circle cx="120" cy="100" r="10" fill="#2D5BFF">
+          <animate attributeName="r" values="10;13;10" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="120" cy="100" r="18" fill="none" stroke="#2D5BFF" strokeWidth="1" opacity="0.4">
+          <animate attributeName="r"       values="14;26;14" dur="3.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+    </svg>
+  )
+}
+
+function DashboardMockup() {
+  return (
+    <svg viewBox="0 0 460 160" className="tile-viz" style={{ width: '70%' }} aria-hidden="true">
+      <defs>
+        <linearGradient id="dm-area" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="rgba(45,91,255,0.4)"/>
+          <stop offset="100%" stopColor="rgba(45,91,255,0)"/>
+        </linearGradient>
+        <linearGradient id="dm-fade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stopColor="rgba(13,13,13,0)" />
+          <stop offset="100%" stopColor="rgba(13,13,13,0.85)" />
+        </linearGradient>
+      </defs>
+      <g transform="translate(20,10)">
+        <rect x="0"   y="0" width="100" height="40" rx="6" fill="#0d0d0d" stroke="#1F1F1F"/>
+        <text x="10"  y="16" fontFamily="JetBrains Mono" fontSize="7" fill="#8A8A8A" letterSpacing="1">MRR</text>
+        <text x="10"  y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="#F5F4F1">€42.8k</text>
+        <text x="58"  y="32" fontFamily="JetBrains Mono" fontSize="7" fill="#3DDC97">+12%</text>
+        <rect x="110" y="0" width="100" height="40" rx="6" fill="#0d0d0d" stroke="#1F1F1F"/>
+        <text x="120" y="16" fontFamily="JetBrains Mono" fontSize="7" fill="#8A8A8A" letterSpacing="1">CONV</text>
+        <text x="120" y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="#F5F4F1">3.8%</text>
+        <text x="168" y="32" fontFamily="JetBrains Mono" fontSize="7" fill="#3DDC97">+0.4</text>
+        <rect x="220" y="0" width="100" height="40" rx="6" fill="#0d0d0d" stroke="#1F1F1F"/>
+        <text x="230" y="16" fontFamily="JetBrains Mono" fontSize="7" fill="#8A8A8A" letterSpacing="1">LCP</text>
+        <text x="230" y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="#F5F4F1">0.3s</text>
+        <text x="278" y="32" fontFamily="JetBrains Mono" fontSize="7" fill="#3DDC97">good</text>
+        <g transform="translate(0,52)">
+          <path d="M0 60 L40 50 L80 55 L120 38 L160 30 L200 22 L240 28 L280 18 L320 10 L320 70 L0 70 Z" fill="url(#dm-area)"/>
+          <path d="M0 60 L40 50 L80 55 L120 38 L160 30 L200 22 L240 28 L280 18 L320 10" stroke="#2D5BFF" strokeWidth="1.5" fill="none"/>
+          <circle cx="320" cy="10" r="3" fill="#2D5BFF"/>
+        </g>
+        <rect x="0" y="0" width="320" height="160" fill="url(#dm-fade)"/>
+      </g>
+    </svg>
+  )
+}
 
 export default function HomeServizi() {
   const sectionRef = useRef(null)
 
-  /* ── Scroll entry ──────────────────────────────────────────────────────────── */
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-      const eyebrow  = sectionRef.current.querySelector('.hs2-eyebrow')
-      const rows     = gsap.utils.toArray('.hs2-row', sectionRef.current)
-      const dividers = gsap.utils.toArray('.hs2-row-line', sectionRef.current)
-      const details  = gsap.utils.toArray('.hs2-row-detail', sectionRef.current)
+      const header = sectionRef.current.querySelector('.bento-header')
+      const tiles  = gsap.utils.toArray('.bento-tile', sectionRef.current)
 
-      // Initialize detail clip state (GSAP owns this)
-      gsap.set(details, {
-        clipPath: 'inset(0 0 100% 0)',
-        opacity: 0,
-      })
-
-      if (prefersReduced) {
-        gsap.set([eyebrow, ...rows], { opacity: 1, y: 0 })
-        gsap.set(dividers, { scaleX: 1 })
-        return
-      }
-
-      gsap.set(eyebrow,  { opacity: 0, y: 16 })
-      gsap.set(rows,     { opacity: 0, y: 44 })
-      gsap.set(dividers, { scaleX: 0, transformOrigin: 'left center' })
+      gsap.set([header, ...tiles], { opacity: 0, y: 36 })
 
       gsap.timeline({
         scrollTrigger: {
@@ -62,109 +127,102 @@ export default function HomeServizi() {
           once: true,
         },
       })
-        .to(eyebrow,  { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' })
-        .to(dividers, { scaleX: 1, duration: 0.9, ease: 'expo.out', stagger: 0.1 }, '-=0.2')
-        .to(rows,     { opacity: 1, y: 0, duration: 0.65, ease: 'expo.out', stagger: 0.1 }, '-=0.75')
+        .to(header, { opacity: 1, y: 0, duration: 0.65, ease: 'expo.out' })
+        .to(tiles,  { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out', stagger: 0.07 }, '-=0.35')
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
-  /* ── Hover interactions ────────────────────────────────────────────────────── */
-  useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    if (window.matchMedia('(pointer: coarse)').matches) return
-
-    const rows    = Array.from(sectionRef.current.querySelectorAll('.hs2-row'))
-    const details = Array.from(sectionRef.current.querySelectorAll('.hs2-row-detail'))
-    const arrows  = Array.from(sectionRef.current.querySelectorAll('.hs2-row-arrow'))
-    const handlers = []
-
-    rows.forEach((row, idx) => {
-      const detail = details[idx]
-      const arrow  = arrows[idx]
-
-      const onEnter = () => {
-        // Reveal detail via clip-path
-        if (detail) {
-          gsap.to(detail, {
-            clipPath: 'inset(0 0 0% 0)',
-            opacity: 1,
-            marginTop: '14px',
-            duration: 0.42,
-            ease: 'power3.out',
-            overwrite: 'auto',
-          })
-        }
-        // Arrow drift
-        if (arrow) {
-          gsap.to(arrow, { x: 8, rotation: -5, duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
-        }
-        // Dim siblings
-        rows.forEach((r, i) => {
-          if (i !== idx) {
-            gsap.to(r, { opacity: 0.4, duration: 0.28, ease: 'power2.out', overwrite: 'auto' })
-          }
-        })
-      }
-
-      const onLeave = () => {
-        if (detail) {
-          gsap.to(detail, {
-            clipPath: 'inset(0 0 100% 0)',
-            opacity: 0,
-            marginTop: '0px',
-            duration: 0.32,
-            ease: 'power3.in',
-            overwrite: 'auto',
-          })
-        }
-        if (arrow) {
-          gsap.to(arrow, { x: 0, rotation: 0, duration: 0.35, ease: 'power2.out', overwrite: 'auto' })
-        }
-        rows.forEach(r => {
-          gsap.to(r, { opacity: 1, duration: 0.32, ease: 'power2.out', overwrite: 'auto' })
-        })
-      }
-
-      row.addEventListener('mouseenter', onEnter)
-      row.addEventListener('mouseleave', onLeave)
-      handlers.push({ row, onEnter, onLeave })
-    })
-
-    return () => {
-      handlers.forEach(({ row, onEnter, onLeave }) => {
-        row.removeEventListener('mouseenter', onEnter)
-        row.removeEventListener('mouseleave', onLeave)
-      })
-    }
-  }, [])
-
   return (
-    <section ref={sectionRef} className="hs2-section">
-      <div className="hs2-inner">
-        <span className="hs2-eyebrow">// servizi</span>
-        <ul className="hs2-list" role="list">
-          {SERVICES.map((s) => (
-            <li key={s.num} className="hs2-row-wrap">
-              <div className="hs2-row-line" aria-hidden="true" />
-              <Link to="/servizi" className="hs2-row">
-                <span className="hs2-row-num">{s.num}</span>
-                <div className="hs2-row-body">
-                  <span className="hs2-row-name">{s.name}</span>
-                  <div className="hs2-row-detail">
-                    <span className="hs2-row-tag">{s.tag}</span>
-                    <p className="hs2-row-desc">{s.desc}</p>
-                  </div>
-                </div>
-                <span className="hs2-row-arrow" aria-hidden="true">→</span>
-              </Link>
-            </li>
-          ))}
-          <li className="hs2-row-wrap">
-            <div className="hs2-row-line" aria-hidden="true" />
-          </li>
-        </ul>
+    <section ref={sectionRef} className="bento-section" id="servizi">
+      <div className="bento-inner">
+        <header className="bento-header section-header">
+          <span className="section-eyebrow">// servizi</span>
+          <h2 className="section-title">tre aree, un metodo<span className="h-dot">.</span></h2>
+          <p className="section-lede">
+            siti che convertono. sistemi AI che riducono il lavoro ripetitivo.
+            dati che parlano la lingua del business<span className="h-dot">.</span>
+          </p>
+        </header>
+
+        <div className="bento">
+          <article className="bento-tile tile t-web">
+            <div className="tile-eyebrow">01 / siti web</div>
+            <h3 className="tile-title">siti su misura<span className="h-dot">.</span></h3>
+            <p className="tile-body">
+              design + sviluppo. responsive, accessibili, SEO-ready. nessun template,
+              nessun page builder. consegniamo siti che caricano in meno di un secondo<span className="h-dot">.</span>
+            </p>
+            <div className="tile-tags">
+              <span className="tile-tag">design</span>
+              <span className="tile-tag">react · vite</span>
+              <span className="tile-tag">cms headless</span>
+              <span className="tile-tag">seo tecnica</span>
+              <span className="tile-tag">a11y</span>
+            </div>
+            <div className="tile-spacer" />
+            <BrowserMockup />
+          </article>
+
+          <article className="bento-tile tile t-ai">
+            <div className="tile-eyebrow">02 / ai</div>
+            <h3 className="tile-title">sistemi AI<span className="h-dot">.</span></h3>
+            <p className="tile-body">
+              chatbot, agenti, automazioni. integrati nei tuoi flussi reali —
+              non demo da fiera<span className="h-dot">.</span>
+            </p>
+            <div className="tile-tags">
+              <span className="tile-tag">LLM</span>
+              <span className="tile-tag">agents</span>
+              <span className="tile-tag">RAG</span>
+              <span className="tile-tag">automazione</span>
+            </div>
+            <div className="tile-spacer" />
+            <NetworkMockup />
+          </article>
+
+          <article className="bento-tile tile t-dati">
+            <div className="tile-eyebrow">03 / dati</div>
+            <h3 className="tile-title">analisi dei dati<span className="h-dot">.</span></h3>
+            <p className="tile-body">
+              dashboard, pipeline, BI. numeri leggibili, decisioni veloci<span className="h-dot">.</span>
+            </p>
+            <div className="tile-tags">
+              <span className="tile-tag">dashboard</span>
+              <span className="tile-tag">ETL</span>
+              <span className="tile-tag">BI</span>
+              <span className="tile-tag">viz</span>
+            </div>
+            <div className="tile-spacer" />
+            <DashboardMockup />
+          </article>
+
+          <aside className="bento-tile tile t-quote quote-tile">
+            <div className="q-mark">"</div>
+            <p className="q-text">
+              non un'agenzia<span className="h-dot">.</span> un partner operativo<span className="h-dot">.</span>
+            </p>
+            <div className="q-attr">— il manifesto nilbu</div>
+          </aside>
+
+          <div className="bento-tile tile t-stat">
+            <div className="stat-num">04<span className="stat-unit">sett.</span></div>
+            <div className="stat-label">tempo medio<br/>go-live</div>
+          </div>
+          <div className="bento-tile tile t-stat">
+            <div className="stat-num">99<span className="stat-unit">/100</span></div>
+            <div className="stat-label">lighthouse<br/>performance</div>
+          </div>
+          <div className="bento-tile tile t-stat">
+            <div className="stat-num">24<span className="stat-unit">h</span></div>
+            <div className="stat-label">risposta media<br/>email</div>
+          </div>
+          <div className="bento-tile tile t-stat">
+            <div className="stat-num">01<span className="stat-unit">team</span></div>
+            <div className="stat-label">interlocutore<br/>unico</div>
+          </div>
+        </div>
       </div>
     </section>
   )
