@@ -1,4 +1,4 @@
-/* ── Logo – always visible, top-left ── */
+/* ── Logo — top-left ───────────────────────────────────────────── */
 .nav-logo-link {
   position: fixed;
   top: 1.25rem;
@@ -10,7 +10,7 @@
   text-decoration: none;
 }
 
-/* ── Island – top-center, static pill ── */
+/* ── Island — top-center (original) ────────────────────────────── */
 .nav-island {
   position: fixed;
   top: 1.25rem;
@@ -23,9 +23,30 @@
   background: var(--ink-2);
   border: 1.5px solid var(--line-dk);
   border-radius: 999px;
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
 }
 
-/* ── Menu button ── */
+.nav-island--scrolled {
+  background: rgba(20, 20, 20, 0.92);
+  border-color: rgba(45, 91, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+[data-theme="light"] .nav-island {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 15, 15, 0.10);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: 0 4px 18px rgba(15, 15, 15, 0.05);
+}
+
+[data-theme="light"] .nav-island--scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(45, 91, 255, 0.20);
+}
+
+/* ── Menu button ────────────────────────────────────────────────── */
 .nav-menu-btn {
   width: 34px;
   height: 34px;
@@ -53,12 +74,127 @@
   outline-offset: 3px;
 }
 
-.nav-menu-btn svg {
-  overflow: visible;
-  display: block;
+.nav-menu-btn svg { overflow: visible; display: block; }
+
+/* ── Divider ────────────────────────────────────────────────────── */
+.nav-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--line-dk);
+  margin: 0 2px;
+  flex-shrink: 0;
 }
 
-/* ── Overlay ── */
+/* ── Theme toggle ───────────────────────────────────────────────── */
+.nav-theme-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mute);
+  transition: color 0.2s ease;
+}
+
+.nav-theme-btn:hover { color: var(--paper); }
+
+.nav-theme-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Team Pulse + CTA pill — top-right ─────────────────────────── */
+.nav-cta-pill {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  background: var(--ink-2);
+  border: 1.5px solid var(--line-dk);
+  border-radius: 999px;
+  overflow: hidden;
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+[data-theme="light"] .nav-cta-pill {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 15, 15, 0.10);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: 0 4px 18px rgba(15, 15, 15, 0.05);
+}
+
+/* Team Pulse — inside the pill (no independent positioning) */
+.team-pulse {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--mute);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.team-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1FAE74;
+  flex-shrink: 0;
+  animation: tp-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes tp-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(31, 174, 116, 0.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(31, 174, 116, 0); }
+}
+
+.team-pulse-sep { color: var(--line-dk); }
+
+.team-pulse-slot { color: var(--accent); }
+
+/* Separator between TeamPulse and CTA */
+.nav-cta-sep {
+  width: 1px;
+  height: 100%;
+  min-height: 38px;
+  background: var(--line-dk);
+  flex-shrink: 0;
+}
+
+/* CTA button */
+.nav-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent);
+  transition: background 0.22s ease;
+  white-space: nowrap;
+}
+
+.nav-cta-btn:hover { background: var(--accent-2); }
+
+[data-theme="light"] .nav-cta-btn:hover { background: #1A44E8; }
+
+/* ── Overlay ────────────────────────────────────────────────────── */
 .nav-overlay {
   position: fixed;
   inset: 0;
@@ -75,7 +211,7 @@
   opacity: 0;
 }
 
-/* ── Panel – drops from top-center ── */
+/* ── Panel — drops from top-center ─────────────────────────────── */
 .nav-panel {
   position: absolute;
   top: 5rem;
@@ -88,7 +224,13 @@
   max-width: 380px;
 }
 
-/* ── Links ── */
+[data-theme="light"] .nav-panel {
+  background: rgba(255, 255, 255, 0.97);
+  border-color: rgba(15, 15, 15, 0.08);
+  box-shadow: 0 24px 60px rgba(15, 15, 15, 0.12);
+}
+
+/* ── Menu links ─────────────────────────────────────────────────── */
 .nav-menu-link {
   display: flex;
   align-items: center;
@@ -150,51 +292,11 @@
 .nav-menu-link:hover .nav-link-num        { color: var(--mute); }
 .nav-menu-link--active .nav-link-num      { color: var(--accent); opacity: 0.6; }
 
-/* ── Scroll state ── */
-.nav-island {
-  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .nav-cta-pill { display: none; }
 }
 
-.nav-island--scrolled {
-  background: rgba(20, 20, 20, 0.92);
-  border-color: rgba(45, 91, 255, 0.18);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-[data-theme="light"] .nav-island--scrolled {
-  background: rgba(245, 244, 241, 0.92);
-  border-color: rgba(45, 91, 255, 0.2);
-}
-
-/* ── Theme toggle ── */
-.nav-divider {
-  width: 1px;
-  height: 18px;
-  background: var(--line-dk);
-  margin: 0 2px;
-  flex-shrink: 0;
-}
-
-.nav-theme-btn {
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--mute);
-  transition: color 0.2s ease;
-}
-
-.nav-theme-btn:hover { color: var(--paper); }
-
-.nav-theme-btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+@media (prefers-reduced-motion: reduce) {
+  .team-pulse-dot { animation: none; }
 }

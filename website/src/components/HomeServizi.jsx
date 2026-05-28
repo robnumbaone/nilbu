@@ -9,24 +9,24 @@ function BrowserMockup() {
     <svg viewBox="0 0 460 180" className="tile-viz" style={{ width: '60%', maxWidth: 460 }} aria-hidden="true">
       <defs>
         <linearGradient id="bm-fade" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stopColor="rgba(13,13,13,0)" />
-          <stop offset="50%"  stopColor="rgba(13,13,13,0.5)" />
-          <stop offset="100%" stopColor="rgba(13,13,13,0.95)" />
+          <stop offset="0%"   stopColor="var(--viz-fade-0)" />
+          <stop offset="50%"  stopColor="var(--viz-fade-1)" />
+          <stop offset="100%" stopColor="var(--viz-fade-2)" />
         </linearGradient>
       </defs>
       <g transform="translate(40,18)">
-        <rect x="0" y="0" width="420" height="160" rx="10" fill="#0a0a0a" stroke="#1F1F1F"/>
-        <circle cx="14" cy="14" r="3" fill="#3A3A3A"/>
-        <circle cx="26" cy="14" r="3" fill="#3A3A3A"/>
-        <circle cx="38" cy="14" r="3" fill="#3A3A3A"/>
-        <rect x="60" y="9" width="340" height="10" rx="3" fill="#141414"/>
+        <rect x="0" y="0" width="420" height="160" rx="10" fill="var(--viz-surface)" stroke="var(--viz-line)"/>
+        <circle cx="14" cy="14" r="3" fill="var(--viz-dot)"/>
+        <circle cx="26" cy="14" r="3" fill="var(--viz-dot)"/>
+        <circle cx="38" cy="14" r="3" fill="var(--viz-dot)"/>
+        <rect x="60" y="9" width="340" height="10" rx="3" fill="var(--viz-surface-2)"/>
         <rect x="14" y="40" width="50"  height="6"  rx="2" fill="#2D5BFF"/>
-        <rect x="14" y="56" width="280" height="14" rx="2" fill="#F5F4F1"/>
-        <rect x="14" y="76" width="220" height="14" rx="2" fill="#F5F4F1" opacity="0.85"/>
-        <rect x="14" y="98"  width="160" height="6" rx="2" fill="#6B6B6B"/>
-        <rect x="14" y="110" width="200" height="6" rx="2" fill="#6B6B6B" opacity="0.6"/>
+        <rect x="14" y="56" width="280" height="14" rx="2" fill="var(--viz-text)"/>
+        <rect x="14" y="76" width="220" height="14" rx="2" fill="var(--viz-text)" opacity="0.85"/>
+        <rect x="14" y="98"  width="160" height="6" rx="2" fill="var(--viz-mute)"/>
+        <rect x="14" y="110" width="200" height="6" rx="2" fill="var(--viz-mute)" opacity="0.6"/>
         <rect x="14"  y="128" width="74" height="20" rx="6" fill="#2D5BFF"/>
-        <rect x="96"  y="128" width="62" height="20" rx="6" fill="none" stroke="#3A3A3A"/>
+        <rect x="96"  y="128" width="62" height="20" rx="6" fill="none" stroke="var(--viz-dot)"/>
         <rect x="0" y="0" width="420" height="160" fill="url(#bm-fade)" rx="10"/>
       </g>
     </svg>
@@ -53,10 +53,10 @@ function NetworkMockup() {
         <line x1="120" y1="100" x2="120" y2="180"/>
       </g>
       <g>
-        <circle cx="40"  cy="40"  r="6" fill="#B7C4FF"/>
-        <circle cx="200" cy="40"  r="6" fill="#B7C4FF"/>
-        <circle cx="40"  cy="160" r="6" fill="#B7C4FF"/>
-        <circle cx="200" cy="160" r="6" fill="#B7C4FF"/>
+        <circle cx="40"  cy="40"  r="6" fill="var(--viz-node)"/>
+        <circle cx="200" cy="40"  r="6" fill="var(--viz-node)"/>
+        <circle cx="40"  cy="160" r="6" fill="var(--viz-node)"/>
+        <circle cx="200" cy="160" r="6" fill="var(--viz-node)"/>
         <circle cx="120" cy="30"  r="4" fill="#6A8BFF"/>
         <circle cx="120" cy="180" r="4" fill="#6A8BFF"/>
         <circle cx="120" cy="100" r="10" fill="#2D5BFF">
@@ -80,22 +80,22 @@ function DashboardMockup() {
           <stop offset="100%" stopColor="rgba(45,91,255,0)"/>
         </linearGradient>
         <linearGradient id="dm-fade" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stopColor="rgba(13,13,13,0)" />
-          <stop offset="100%" stopColor="rgba(13,13,13,0.85)" />
+          <stop offset="0%"   stopColor="var(--viz-fade-0)" />
+          <stop offset="100%" stopColor="var(--viz-fade-3)" />
         </linearGradient>
       </defs>
       <g transform="translate(20,10)">
-        <rect x="0"   y="0" width="100" height="40" rx="6" fill="#0d0d0d" stroke="#1F1F1F"/>
-        <text x="10"  y="16" fontFamily="JetBrains Mono" fontSize="7" fill="#8A8A8A" letterSpacing="1">MRR</text>
-        <text x="10"  y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="#F5F4F1">€42.8k</text>
+        <rect x="0"   y="0" width="100" height="40" rx="6" fill="var(--viz-surface)" stroke="var(--viz-line)"/>
+        <text x="10"  y="16" fontFamily="JetBrains Mono" fontSize="7" fill="var(--viz-mute)" letterSpacing="1">MRR</text>
+        <text x="10"  y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="var(--viz-text)">€42.8k</text>
         <text x="58"  y="32" fontFamily="JetBrains Mono" fontSize="7" fill="#3DDC97">+12%</text>
-        <rect x="110" y="0" width="100" height="40" rx="6" fill="#0d0d0d" stroke="#1F1F1F"/>
-        <text x="120" y="16" fontFamily="JetBrains Mono" fontSize="7" fill="#8A8A8A" letterSpacing="1">CONV</text>
-        <text x="120" y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="#F5F4F1">3.8%</text>
+        <rect x="110" y="0" width="100" height="40" rx="6" fill="var(--viz-surface)" stroke="var(--viz-line)"/>
+        <text x="120" y="16" fontFamily="JetBrains Mono" fontSize="7" fill="var(--viz-mute)" letterSpacing="1">CONV</text>
+        <text x="120" y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="var(--viz-text)">3.8%</text>
         <text x="168" y="32" fontFamily="JetBrains Mono" fontSize="7" fill="#3DDC97">+0.4</text>
-        <rect x="220" y="0" width="100" height="40" rx="6" fill="#0d0d0d" stroke="#1F1F1F"/>
-        <text x="230" y="16" fontFamily="JetBrains Mono" fontSize="7" fill="#8A8A8A" letterSpacing="1">LCP</text>
-        <text x="230" y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="#F5F4F1">0.3s</text>
+        <rect x="220" y="0" width="100" height="40" rx="6" fill="var(--viz-surface)" stroke="var(--viz-line)"/>
+        <text x="230" y="16" fontFamily="JetBrains Mono" fontSize="7" fill="var(--viz-mute)" letterSpacing="1">LCP</text>
+        <text x="230" y="32" fontFamily="Inter Tight" fontWeight="800" fontSize="14" fill="var(--viz-text)">0.3s</text>
         <text x="278" y="32" fontFamily="JetBrains Mono" fontSize="7" fill="#3DDC97">good</text>
         <g transform="translate(0,52)">
           <path d="M0 60 L40 50 L80 55 L120 38 L160 30 L200 22 L240 28 L280 18 L320 10 L320 70 L0 70 Z" fill="url(#dm-area)"/>
@@ -147,7 +147,7 @@ export default function HomeServizi() {
         </header>
 
         <div className="bento">
-          <article className="bento-tile tile t-web">
+          <article className="bento-tile tile t-web" data-dev="[bento · web]">
             <div className="tile-eyebrow">01 / siti web</div>
             <h3 className="tile-title">siti su misura<span className="h-dot">.</span></h3>
             <p className="tile-body">
@@ -165,7 +165,7 @@ export default function HomeServizi() {
             <BrowserMockup />
           </article>
 
-          <article className="bento-tile tile t-ai">
+          <article className="bento-tile tile t-ai" data-dev="[bento · ai]">
             <div className="tile-eyebrow">02 / ai</div>
             <h3 className="tile-title">sistemi AI<span className="h-dot">.</span></h3>
             <p className="tile-body">
@@ -182,7 +182,7 @@ export default function HomeServizi() {
             <NetworkMockup />
           </article>
 
-          <article className="bento-tile tile t-dati">
+          <article className="bento-tile tile t-dati" data-dev="[bento · dati]">
             <div className="tile-eyebrow">03 / dati</div>
             <h3 className="tile-title">analisi dei dati<span className="h-dot">.</span></h3>
             <p className="tile-body">
@@ -198,7 +198,7 @@ export default function HomeServizi() {
             <DashboardMockup />
           </article>
 
-          <aside className="bento-tile tile t-quote quote-tile">
+          <aside className="bento-tile tile t-quote quote-tile" data-dev="[quote]">
             <div className="q-mark">"</div>
             <p className="q-text">
               non un'agenzia<span className="h-dot">.</span> un partner operativo<span className="h-dot">.</span>
@@ -206,19 +206,19 @@ export default function HomeServizi() {
             <div className="q-attr">— il manifesto nilbu</div>
           </aside>
 
-          <div className="bento-tile tile t-stat">
+          <div className="bento-tile tile t-stat" data-dev="[stat]">
             <div className="stat-num">04<span className="stat-unit">sett.</span></div>
             <div className="stat-label">tempo medio<br/>go-live</div>
           </div>
-          <div className="bento-tile tile t-stat">
+          <div className="bento-tile tile t-stat" data-dev="[stat]">
             <div className="stat-num">99<span className="stat-unit">/100</span></div>
             <div className="stat-label">lighthouse<br/>performance</div>
           </div>
-          <div className="bento-tile tile t-stat">
+          <div className="bento-tile tile t-stat" data-dev="[stat]">
             <div className="stat-num">24<span className="stat-unit">h</span></div>
             <div className="stat-label">risposta media<br/>email</div>
           </div>
-          <div className="bento-tile tile t-stat">
+          <div className="bento-tile tile t-stat" data-dev="[stat]">
             <div className="stat-num">01<span className="stat-unit">team</span></div>
             <div className="stat-label">interlocutore<br/>unico</div>
           </div>

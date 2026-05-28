@@ -1501,7 +1501,7 @@
    Light theme overrides
    ───────────────────────────────────────────────────────────────────────────── */
 
-/* ── Service tiles — dark in all themes, navy in light mode ─── */
+/* ── Service tiles — dark glass base (all themes) ──────────────────── */
 .t-web, .t-ai, .t-dati {
   background: rgba(13,13,13,0.92);
   border-color: rgba(255,255,255,0.07);
@@ -1514,64 +1514,140 @@
 .t-web .tile-tag,    .t-ai .tile-tag,    .t-dati .tile-tag    { border-color: rgba(255,255,255,0.08); color: #8A8A8A; }
 .t-web:hover .tile-tag, .t-ai:hover .tile-tag, .t-dati:hover .tile-tag { border-color: rgba(45,91,255,0.3); color: #B7C4FF; }
 
-/* Light mode — dark navy card, clearly a design choice not an accident */
-[data-theme="light"] .t-web,
-[data-theme="light"] .t-ai,
-[data-theme="light"] .t-dati {
-  background: #111827;
-  border-color: rgba(45,91,255,0.18);
-  box-shadow: 0 0 0 1px rgba(45,91,255,0.07), 0 20px 48px rgba(10,15,40,0.18);
+/* ── Light mode — all tiles become frosted white glass ─────────────── */
+[data-theme="light"] .tile {
+  background: rgba(255, 255, 255, 0.60);
+  border-color: rgba(15, 15, 15, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 15, 15, 0.04);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
 }
 
-/* ── Glass surface: quote, stat, diff → white frosted in light ────────── */
-[data-theme="light"] .t-quote,
-[data-theme="light"] .t-stat,
-[data-theme="light"] .diff-card,
-[data-theme="light"] .h-stat-tile {
-  background: rgba(255, 255, 255, 0.75);
-  border-color: rgba(0, 0, 0, 0.07);
+[data-theme="light"] .tile:hover {
+  border-color: rgba(45, 91, 255, 0.30);
+  box-shadow: 0 18px 40px rgba(45, 91, 255, 0.10);
 }
 
-[data-theme="light"] .t-quote:hover,
-[data-theme="light"] .t-stat:hover,
-[data-theme="light"] .diff-card:hover,
-[data-theme="light"] .h-stat-tile:hover {
-  border-color: rgba(45, 91, 255, 0.28);
-}
+/* Service tile text — reset to theme vars in light */
+[data-theme="light"] .t-web .tile-title,
+[data-theme="light"] .t-ai  .tile-title,
+[data-theme="light"] .t-dati .tile-title  { color: var(--paper); }
+[data-theme="light"] .t-web .tile-body,
+[data-theme="light"] .t-ai  .tile-body,
+[data-theme="light"] .t-dati .tile-body   { color: var(--mute); }
+[data-theme="light"] .t-web .tile-eyebrow,
+[data-theme="light"] .t-ai  .tile-eyebrow,
+[data-theme="light"] .t-dati .tile-eyebrow { color: var(--accent-soft); }
+[data-theme="light"] .t-web .tile-tag,
+[data-theme="light"] .t-ai  .tile-tag,
+[data-theme="light"] .t-dati .tile-tag    { border-color: rgba(15, 15, 15, 0.12); color: var(--mute); }
+[data-theme="light"] .t-web:hover .tile-tag,
+[data-theme="light"] .t-ai:hover  .tile-tag,
+[data-theme="light"] .t-dati:hover .tile-tag { border-color: rgba(45,91,255,0.30); color: var(--accent-soft); }
 
-/* Quote tile in light */
+/* Quote tile */
 [data-theme="light"] .quote-tile {
-  background: linear-gradient(150deg, rgba(45,91,255,0.08), rgba(45,91,255,0.02) 60%, transparent),
-              rgba(255, 255, 255, 0.75);
+  background: linear-gradient(150deg, rgba(45,91,255,0.09), rgba(45,91,255,0.02) 60%, transparent),
+              rgba(255, 255, 255, 0.60);
 }
 
-/* Stat tiles in light — text stays from --paper which is dark in light theme ✓ */
-
-/* Tags on non-service tiles */
+/* Tags on stat tiles */
 [data-theme="light"] .t-stat .tile-tag,
-[data-theme="light"] .t-quote .tile-tag { border-color: rgba(0,0,0,0.12); color: var(--mute); }
+[data-theme="light"] .t-quote .tile-tag { border-color: rgba(15,15,15,0.12); color: var(--mute); }
 
-/* Diff ghost number in light */
+/* Diff cards */
+[data-theme="light"] .diff-card {
+  background: rgba(255, 255, 255, 0.60);
+  border-color: rgba(15, 15, 15, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 15, 15, 0.04);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+[data-theme="light"] .diff-card:hover {
+  border-color: rgba(45, 91, 255, 0.30);
+  box-shadow: 0 18px 40px rgba(45, 91, 255, 0.10);
+}
+
+/* Ghost numbers in diff cards */
 [data-theme="light"] .diff-card::after { color: rgba(45,91,255,0.06); }
 [data-theme="light"] .diff-card:hover::after { color: rgba(45,91,255,0.14); }
 
-/* Before/after wrap */
-[data-theme="light"] .ba-wrap { border-color: rgba(0,0,0,0.08); }
+/* Hero stat tiles */
+[data-theme="light"] .h-stat-tile {
+  background: rgba(255, 255, 255, 0.60);
+  border-color: rgba(15, 15, 15, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 15, 15, 0.04);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
 
-/* Ambient grid — less visible on light */
+[data-theme="light"] .h-stat-tile:hover {
+  border-color: rgba(45, 91, 255, 0.28);
+  box-shadow: 0 16px 38px rgba(45, 91, 255, 0.10);
+}
+
+/* Ghost button — use theme-aware border */
+[data-theme="light"] .h-btn-ghost {
+  border-color: var(--line);
+  color: var(--mute);
+}
+
+[data-theme="light"] .h-btn-ghost:hover {
+  border-color: var(--mute);
+  color: var(--paper);
+}
+
+/* Before/after wrap */
+[data-theme="light"] .ba-wrap {
+  border-color: rgba(15, 15, 15, 0.08);
+  box-shadow: 0 24px 60px rgba(15, 15, 15, 0.10);
+}
+
+/* Before pane — light parchment style in light mode */
+[data-theme="light"] .ba-before { background: #d9d2c5; }
+[data-theme="light"] .ba-before .ba-content {
+  background: linear-gradient(180deg, #f3e6c8, #e8d6a8);
+  border: 2px solid #b88a2a;
+}
+[data-theme="light"] .junk-nav span {
+  color: #0d3aa8;
+  background: rgba(13, 58, 168, 0.06);
+  text-decoration: underline;
+}
+[data-theme="light"] .junk-h { color: #c81e1e; text-shadow: 1px 1px 0 #fff; }
+[data-theme="light"] .junk-body { color: #2a1f0a; }
+[data-theme="light"] .junk-aside {
+  background: rgba(200, 30, 30, 0.10);
+  border: 1px dashed #c81e1e;
+  color: #8a1414;
+}
+[data-theme="light"] .junk-loader { color: #9a6a00; }
+
+/* Appr list dividers */
+[data-theme="light"] .appr-list { border-top-color: var(--line); }
+[data-theme="light"] .appr-row  { border-bottom-color: var(--line); }
+
+/* Ambient grid — adapted for light */
 [data-theme="light"] .bg-grid {
   background-image:
-    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
-  opacity: 0.4;
+    linear-gradient(rgba(15,15,15,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,15,15,0.04) 1px, transparent 1px);
+  opacity: 0.5;
 }
 
 /* Hero meta on light */
 [data-theme="light"] .h-meta { color: var(--mute); }
 
-/* Appr rows on light */
-[data-theme="light"] .appr-list { border-top-color: var(--line-dk); }
-[data-theme="light"] .appr-row  { border-bottom-color: var(--line-dk); }
+/* CTA dot grid on light */
+[data-theme="light"] .hcf-section::before {
+  background-image: radial-gradient(circle, rgba(15,15,15,0.055) 1px, transparent 1px);
+}
+
+/* Footer on light */
+[data-theme="light"] .hf-footer {
+  background: #ECEAE4;
+}
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Reduced motion
