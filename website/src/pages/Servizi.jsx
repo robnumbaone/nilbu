@@ -1,7 +1,8 @@
-import { useRef, useLayoutEffect } from 'react'
+import { useRef, useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import HomeFooter from '../components/HomeFooter'
 import '../styles/servizi.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -142,6 +143,7 @@ const SERVICES = [
     title: 'siti web',
     body: 'Design su misura, codice pulito, esperienze che funzionano su ogni dispositivo. Dal brief al lancio, con attenzione ai dettagli che fanno la differenza.',
     tags: ['UI / UX', 'CMS', 'SEO', 'Responsive'],
+    deliverables: ['design su misura', 'sviluppo front & back', 'ottimizzazione SEO', 'manutenzione continua'],
     Visual: VisualWeb,
   },
   {
@@ -150,6 +152,7 @@ const SERVICES = [
     title: 'intelligenza artificiale',
     body: 'Chatbot, automazioni, agenti AI. Integriamo modelli linguistici e sistemi di machine learning direttamente nei tuoi flussi di lavoro.',
     tags: ['LLM', 'Agents', 'Automazione', 'Integrazione'],
+    deliverables: ['chatbot & assistenti', 'agenti autonomi', 'automazioni su misura', 'integrazione nei tuoi tool'],
     Visual: VisualAI,
   },
   {
@@ -158,13 +161,67 @@ const SERVICES = [
     title: 'analisi dei dati',
     body: 'Trasformiamo dati grezzi in visualizzazioni chiare e decisioni informate. Dashboard su misura, pipeline dati e business intelligence.',
     tags: ['Dashboard', 'Pipeline', 'BI', 'Visualizzazioni'],
+    deliverables: ['dashboard interattive', 'pipeline dati', 'report automatici', 'modelli predittivi'],
     Visual: VisualData,
   },
 ]
 
+const PROCESS = [
+  { num: '01', label: 'brief', text: 'ci racconti il progetto. ti rispondiamo entro 24 ore con le prime domande.' },
+  { num: '02', label: 'proposta', text: 'definiamo scope, tempi e preventivo trasparente. nessuna sorpresa.' },
+  { num: '03', label: 'build', text: 'costruiamo per iterazioni, con feedback continui e demo regolari.' },
+  { num: '04', label: 'lancio & oltre', text: 'andiamo online insieme e seguiamo la crescita nel tempo.' },
+]
+
+const FAQ = [
+  {
+    q: 'quanto tempo serve per un progetto?',
+    a: 'dipende dallo scope, ma un sito tipico va online in 3–5 settimane dal brief. per AI e dati definiamo insieme una roadmap a milestone fin dalla proposta.',
+  },
+  {
+    q: 'come funziona il preventivo?',
+    a: 'dopo il primo confronto ti inviamo una proposta trasparente con scope, tempi e costo fisso. niente costi nascosti, niente sorprese in corso d’opera.',
+  },
+  {
+    q: 'lavorate con aziende piccole?',
+    a: 'sì, è il nostro pane. nilbu nasce proprio per dare alle PMI lo stesso accesso tecnologico delle grandi aziende, senza burocrazia e senza costi sproporzionati.',
+  },
+  {
+    q: 'cosa succede dopo il lancio?',
+    a: 'il lancio è l’inizio. offriamo manutenzione, monitoraggio e ottimizzazione continua: misuriamo i risultati e facciamo evolvere il progetto al tuo fianco.',
+  },
+  {
+    q: 'posso scegliere un solo servizio?',
+    a: 'assolutamente. web, AI e dati funzionano benissimo anche separati. spesso però si rinforzano a vicenda — e averli da un unico interlocutore semplifica tutto.',
+  },
+]
+
+function FaqItem({ item, open, onToggle, index }) {
+  return (
+    <div className={`sv-faq-item${open ? ' sv-faq-item--open' : ''}`}>
+      <button
+        type="button"
+        className="sv-faq-q"
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls={`faq-a-${index}`}
+      >
+        <span>{item.q}</span>
+        <span className="sv-faq-icon" aria-hidden="true" />
+      </button>
+      <div id={`faq-a-${index}`} className="sv-faq-a-wrap" role="region">
+        <p className="sv-faq-a">{item.a}</p>
+      </div>
+    </div>
+  )
+}
+
 export default function Servizi() {
-  const heroRef  = useRef(null)
+  const heroRef   = useRef(null)
   const panelRefs = useRef([])
+  const processRef = useRef(null)
+  const faqRef     = useRef(null)
+  const [openFaq, setOpenFaq] = useState(0)
 
   useLayoutEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -216,6 +273,13 @@ export default function Servizi() {
           .to(tags,   { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' }, 0.46)
           .to(visual, { opacity: 1, x: 0, duration: 0.9, ease: 'expo.out' }, 0.18)
 
+        /* Deliverables list */
+        const deliv = panel.querySelectorAll('.sv-deliv-item')
+        if (deliv.length) {
+          gsap.set(deliv, { opacity: 0, x: -16 })
+          tl.to(deliv, { opacity: 1, x: 0, duration: 0.5, ease: 'expo.out', stagger: 0.06 }, 0.5)
+        }
+
         /* Chart bars animation for data section */
         const bars = panel.querySelectorAll('.sv-chart-bar')
         if (bars.length) {
@@ -225,6 +289,40 @@ export default function Servizi() {
           }, 0.5)
         }
       })
+
+      /* ── Process band ── */
+      const pHeader = processRef.current.querySelector('.sv-process-header')
+      const pSteps  = gsap.utils.toArray('.sv-process-step', processRef.current)
+      const pLine   = processRef.current.querySelector('.sv-process-line-fill')
+
+      gsap.set(pHeader, { opacity: 0, y: 22 })
+      gsap.set(pSteps, { opacity: 0, y: 32 })
+      gsap.set(pLine, { scaleX: 0, transformOrigin: 'left center' })
+
+      gsap.to(pHeader, {
+        opacity: 1, y: 0, duration: 0.6, ease: 'expo.out',
+        scrollTrigger: { trigger: processRef.current, start: 'top 78%', once: true },
+      })
+      gsap.to(pSteps, {
+        opacity: 1, y: 0, duration: 0.65, ease: 'expo.out', stagger: 0.12,
+        scrollTrigger: { trigger: '.sv-process-grid', start: 'top 82%', once: true },
+      })
+      gsap.to(pLine, {
+        scaleX: 1, ease: 'none',
+        scrollTrigger: { trigger: '.sv-process-grid', start: 'top 80%', end: 'bottom 70%', scrub: true },
+      })
+
+      /* ── FAQ ── */
+      const fHeader = faqRef.current.querySelector('.sv-faq-header')
+      const fItems  = gsap.utils.toArray('.sv-faq-item', faqRef.current)
+      gsap.set(fHeader, { opacity: 0, y: 22 })
+      gsap.set(fItems, { opacity: 0, y: 24 })
+
+      gsap.timeline({
+        scrollTrigger: { trigger: faqRef.current, start: 'top 76%', once: true },
+      })
+        .to(fHeader, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' })
+        .to(fItems, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out', stagger: 0.08 }, '-=0.3')
     })
 
     return () => ctx.revert()
@@ -277,6 +375,15 @@ export default function Servizi() {
                   <span key={tag} className="sv-service-tag">{tag}</span>
                 ))}
               </div>
+
+              <ul className="sv-deliv">
+                {s.deliverables.map(d => (
+                  <li key={d} className="sv-deliv-item">
+                    <span className="sv-deliv-arrow" aria-hidden="true">→</span>
+                    {d}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className="sv-service-visual">
@@ -285,6 +392,53 @@ export default function Servizi() {
           </div>
         </section>
       ))}
+
+      {/* ── Come iniziamo (process) ── */}
+      <section ref={processRef} className="sv-process">
+        <div className="sv-process-inner">
+          <div className="sv-process-header">
+            <span className="sv-process-eyebrow">// come iniziamo</span>
+            <h2 className="sv-process-headline">
+              dal primo messaggio al lancio<span className="h-dot">.</span>
+            </h2>
+          </div>
+          <div className="sv-process-grid">
+            <div className="sv-process-line" aria-hidden="true">
+              <div className="sv-process-line-fill" />
+            </div>
+            {PROCESS.map(p => (
+              <div key={p.num} className="sv-process-step">
+                <span className="sv-process-num">{p.num}</span>
+                <h3 className="sv-process-label">{p.label}<span className="h-dot">.</span></h3>
+                <p className="sv-process-text">{p.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section ref={faqRef} className="sv-faq">
+        <div className="sv-faq-inner">
+          <div className="sv-faq-header">
+            <span className="sv-faq-eyebrow">// domande frequenti</span>
+            <h2 className="sv-faq-headline">
+              le risposte che cerchi<span className="h-dot">.</span>
+            </h2>
+          </div>
+          <div className="sv-faq-list">
+            {FAQ.map((item, i) => (
+              <FaqItem
+                key={i}
+                index={i}
+                item={item}
+                open={openFaq === i}
+                onToggle={() => setOpenFaq(openFaq === i ? -1 : i)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── CTA ── */}
       <section className="sv-cta">
@@ -300,6 +454,7 @@ export default function Servizi() {
         </div>
       </section>
 
+      <HomeFooter />
     </main>
   )
 }

@@ -28,6 +28,24 @@ const EXPECT = [
 
 const SERVICES = ['siti web su misura', 'automazioni e agenti AI', 'dashboard e analisi dati']
 
+const GARANZIE = [
+  {
+    num: '01',
+    title: 'risposta in 24 ore',
+    text: 'ogni messaggio riceve una risposta entro un giorno lavorativo. niente attese di settimane, niente silenzi.',
+  },
+  {
+    num: '02',
+    title: 'prima call gratuita',
+    text: 'la consulenza iniziale è gratuita e senza impegno. capiamo insieme se ha senso lavorare insieme.',
+  },
+  {
+    num: '03',
+    title: 'preventivo trasparente',
+    text: 'scope, tempi e costo fisso definiti prima di iniziare. nessun costo nascosto, nessuna sorpresa.',
+  },
+]
+
 export default function Contattaci() {
   const [tipo,  setTipo]  = useState('')
   const [form,  setForm]  = useState({ nome: '', email: '', messaggio: '' })
@@ -35,6 +53,7 @@ export default function Contattaci() {
 
   const heroRef = useRef(null)
   const formRef = useRef(null)
+  const garRef  = useRef(null)
 
   const handleChange = (e) => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
@@ -83,6 +102,22 @@ export default function Contattaci() {
         scrollTrigger: { trigger: formRef.current, start: 'top 75%', once: true },
       })
         .to(formItems, { opacity: 1, y: 0, duration: 0.55, ease: 'expo.out', stagger: 0.07 })
+
+      /* ── Garanzie ── */
+      const garHeader = garRef.current.querySelector('.ct-gar-eyebrow')
+      const garCards  = gsap.utils.toArray('.ct-gar-card', garRef.current)
+      const garLine   = garRef.current.querySelector('.ct-gar-divider')
+
+      gsap.set(garHeader, { opacity: 0, y: 20 })
+      gsap.set(garCards, { opacity: 0, y: 36 })
+      gsap.set(garLine, { scaleX: 0, transformOrigin: 'left center' })
+
+      gsap.timeline({
+        scrollTrigger: { trigger: garRef.current, start: 'top 78%', once: true },
+      })
+        .to(garLine, { scaleX: 1, duration: 0.8, ease: 'expo.out' })
+        .to(garHeader, { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' }, '-=0.5')
+        .to(garCards, { opacity: 1, y: 0, duration: 0.65, ease: 'expo.out', stagger: 0.1 }, '-=0.3')
 
     }, heroRef)
 
@@ -235,6 +270,23 @@ export default function Contattaci() {
               </div>
             </aside>
 
+          </div>
+        </section>
+
+        {/* ── Garanzie ── */}
+        <section ref={garRef} className="ct-gar">
+          <div className="ct-gar-divider" aria-hidden="true" />
+          <div className="ct-gar-inner">
+            <span className="ct-gar-eyebrow">// nessun rischio</span>
+            <div className="ct-gar-grid">
+              {GARANZIE.map((g) => (
+                <div key={g.num} className="ct-gar-card">
+                  <span className="ct-gar-num">{g.num}</span>
+                  <h3 className="ct-gar-title">{g.title}<span className="h-dot">.</span></h3>
+                  <p className="ct-gar-text">{g.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

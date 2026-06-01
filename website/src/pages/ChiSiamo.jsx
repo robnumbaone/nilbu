@@ -26,14 +26,52 @@ const VALORI = [
   },
 ]
 
+const METODO = [
+  {
+    num: '01',
+    label: 'ascolto',
+    text: 'partiamo dalle domande giuste. capiamo il contesto, gli obiettivi reali e i vincoli, prima di proporre qualsiasi soluzione.',
+  },
+  {
+    num: '02',
+    label: 'strategia',
+    text: 'definiamo insieme la direzione: cosa costruire, in che ordine e come misurarne il valore. niente fronzoli, solo ciò che serve.',
+  },
+  {
+    num: '03',
+    label: 'costruzione',
+    text: 'progettiamo e sviluppiamo con cura artigianale. iterazioni rapide, feedback continui, zero sorprese al lancio.',
+  },
+  {
+    num: '04',
+    label: 'crescita',
+    text: 'il lancio è l’inizio. misuriamo, ottimizziamo e facciamo evolvere il progetto nel tempo, al tuo fianco.',
+  },
+]
+
+const NUMERI = [
+  { value: 3,   suffix: '',  label: 'discipline in un solo team' },
+  { value: 24,  suffix: 'h', label: 'risposta garantita' },
+  { value: 100, suffix: '%', label: 'focus sul risultato' },
+  { value: 0,   suffix: '',  label: 'passaggi di consegne' },
+]
+
+const STACK = [
+  'react', 'next.js', 'node', 'python', 'typescript', 'gsap',
+  'llm & agenti', 'postgres', 'tailwind', 'vercel', 'figma', 'webgl',
+]
+
 const DNA_WORDS = ['diretti', 'concreti', 'affidabili', 'appassionati']
 
 export default function ChiSiamo() {
-  const heroRef   = useRef(null)
-  const storyRef  = useRef(null)
-  const valoriRef = useRef(null)
-  const dnaRef    = useRef(null)
-  const ctaRef    = useRef(null)
+  const heroRef    = useRef(null)
+  const storyRef   = useRef(null)
+  const valoriRef  = useRef(null)
+  const metodoRef  = useRef(null)
+  const numeriRef  = useRef(null)
+  const stackRef   = useRef(null)
+  const dnaRef     = useRef(null)
+  const ctaRef     = useRef(null)
 
   useLayoutEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -62,6 +100,13 @@ export default function ChiSiamo() {
           onComplete: () => split.revert(),
         }, 0.35)
         .to(sub, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }, 0.68)
+
+      /* Parallax: hero bg letter drifts on scroll */
+      gsap.to(bgLetter, {
+        yPercent: -18,
+        ease: 'none',
+        scrollTrigger: { trigger: heroRef.current, start: 'top top', end: 'bottom top', scrub: true },
+      })
 
       /* ── Story ── */
       const divider = storyRef.current.querySelector('.cs-story-divider')
@@ -92,6 +137,55 @@ export default function ChiSiamo() {
       })
         .to(vHeader, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' })
         .to(cards, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out', stagger: 0.1 }, '-=0.3')
+
+      /* ── Metodo (timeline with drawing line) ── */
+      const mHeader = metodoRef.current.querySelector('.cs-metodo-header')
+      const mLine   = metodoRef.current.querySelector('.cs-metodo-line-fill')
+      const steps   = gsap.utils.toArray('.cs-step', metodoRef.current)
+
+      gsap.set(mHeader, { opacity: 0, y: 20 })
+      gsap.set(steps, { opacity: 0, x: -28 })
+      gsap.set(mLine, { scaleY: 0, transformOrigin: 'top center' })
+
+      gsap.to(mHeader, {
+        opacity: 1, y: 0, duration: 0.6, ease: 'expo.out',
+        scrollTrigger: { trigger: metodoRef.current, start: 'top 75%', once: true },
+      })
+      gsap.to(steps, {
+        opacity: 1, x: 0, duration: 0.7, ease: 'expo.out', stagger: 0.14,
+        scrollTrigger: { trigger: '.cs-metodo-track', start: 'top 78%', once: true },
+      })
+      gsap.to(mLine, {
+        scaleY: 1, ease: 'none',
+        scrollTrigger: { trigger: '.cs-metodo-track', start: 'top 70%', end: 'bottom 75%', scrub: true },
+      })
+
+      /* ── Numeri (count-up) ── */
+      const nHeader = numeriRef.current.querySelector('.cs-num-eyebrow')
+      const nItems  = gsap.utils.toArray('.cs-num-item', numeriRef.current)
+      gsap.set([nHeader, ...nItems], { opacity: 0, y: 24 })
+
+      gsap.timeline({
+        scrollTrigger: { trigger: numeriRef.current, start: 'top 78%', once: true },
+        onStart: () => {
+          numeriRef.current.querySelectorAll('.cs-num-value').forEach((el) => {
+            const end = Number(el.dataset.value)
+            const obj = { v: 0 }
+            gsap.to(obj, {
+              v: end, duration: 1.6, ease: 'power2.out',
+              onUpdate: () => { el.firstChild.textContent = Math.round(obj.v) },
+            })
+          })
+        },
+      })
+        .to(nHeader, { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' })
+        .to(nItems, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out', stagger: 0.1 }, '-=0.2')
+
+      /* ── Stack marquee reveal ── */
+      gsap.from(stackRef.current.querySelector('.cs-stack-eyebrow'), {
+        opacity: 0, y: 18, duration: 0.6, ease: 'expo.out',
+        scrollTrigger: { trigger: stackRef.current, start: 'top 82%', once: true },
+      })
 
       /* ── DNA ── */
       const dnaWords = gsap.utils.toArray('.cs-dna-word', dnaRef.current)
@@ -202,6 +296,72 @@ export default function ChiSiamo() {
                   <h3 className="cs-val-label">{v.label}<span className="h-dot">.</span></h3>
                   <p className="cs-val-text">{v.text}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Metodo / Come lavoriamo ── */}
+        <section ref={metodoRef} className="cs-metodo">
+          <div className="cs-metodo-inner">
+            <div className="cs-metodo-header">
+              <span className="cs-metodo-eyebrow">// come lavoriamo</span>
+              <h2 className="cs-metodo-headline">
+                un metodo, quattro passi<span className="h-dot">.</span>
+              </h2>
+              <p className="cs-metodo-sub">
+                niente processi infiniti. un percorso lineare che ti tiene sempre al centro, dal primo confronto alla crescita continua.
+              </p>
+            </div>
+
+            <div className="cs-metodo-track">
+              <div className="cs-metodo-line" aria-hidden="true">
+                <div className="cs-metodo-line-fill" />
+              </div>
+              {METODO.map((s) => (
+                <div key={s.num} className="cs-step">
+                  <div className="cs-step-marker" aria-hidden="true">
+                    <span className="cs-step-dot" />
+                  </div>
+                  <div className="cs-step-body">
+                    <span className="cs-step-num">{s.num}</span>
+                    <h3 className="cs-step-label">{s.label}<span className="h-dot">.</span></h3>
+                    <p className="cs-step-text">{s.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Numeri (count-up) ── */}
+        <section ref={numeriRef} className="cs-numeri">
+          <div className="cs-numeri-inner">
+            <span className="cs-num-eyebrow">// in breve</span>
+            <div className="cs-num-grid">
+              {NUMERI.map((n) => (
+                <div key={n.label} className="cs-num-item">
+                  <div className="cs-num-value" data-value={n.value}>
+                    <span>0</span><span className="cs-num-suffix">{n.suffix}</span>
+                  </div>
+                  <span className="cs-num-label">{n.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Stack / Competenze (marquee) ── */}
+        <section ref={stackRef} className="cs-stack">
+          <div className="cs-stack-inner">
+            <span className="cs-stack-eyebrow">// con cosa lavoriamo</span>
+          </div>
+          <div className="cs-marquee" aria-hidden="true">
+            <div className="cs-marquee-track">
+              {[...STACK, ...STACK].map((t, i) => (
+                <span key={i} className="cs-marquee-item">
+                  {t}<span className="cs-marquee-sep">/</span>
+                </span>
               ))}
             </div>
           </div>

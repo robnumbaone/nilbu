@@ -4,6 +4,8 @@ import Home from './pages/Home'
 import ChiSiamo from './pages/ChiSiamo'
 import Servizi from './pages/Servizi'
 import Contattaci from './pages/Contattaci'
+import Privacy from './pages/Privacy'
+import NotFound from './pages/NotFound'
 import Navbar from './components/Navbar'
 import CommandPalette from './components/CommandPalette'
 import { ThemeProvider } from './hooks/useTheme.jsx'
@@ -44,6 +46,8 @@ export default function App() {
           <Route path="/chi-siamo"  element={<ChiSiamo />} />
           <Route path="/servizi"    element={<Servizi />} />
           <Route path="/contattaci" element={<Contattaci />} />
+          <Route path="/privacy"    element={<Privacy />} />
+          <Route path="*"           element={<NotFound />} />
         </Routes>
         <CommandPalette
           open={cmdOpen}

@@ -479,14 +479,94 @@
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.04);
 }
 
+/* ── Garanzie ─────────────────────────────────────────────────────────────── */
+.ct-gar {
+  position: relative;
+  padding: 100px 0;
+  border-top: 1px solid var(--line-dk);
+  background: var(--bg-surface);
+}
+
+.ct-gar-divider {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, var(--accent), var(--accent-2));
+}
+
+.ct-gar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.ct-gar-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 48px;
+}
+
+.ct-gar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.ct-gar-card {
+  padding: 32px 28px;
+  border: 1px solid var(--line-dk);
+  border-radius: var(--r-card);
+  background: var(--bg-body);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.ct-gar-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.ct-gar-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.ct-gar-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+}
+
+.ct-gar-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--mute);
+}
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .ct-hero-inner    { padding: 120px 48px 60px; }
   .ct-section-inner { padding: 80px 48px 100px; }
+  .ct-gar-inner     { padding: 0 48px; }
   .ct-promise-item  { padding: 18px 32px; }
 }
 
 @media (max-width: 900px) {
+  .ct-gar          { padding: 72px 0; }
+  .ct-gar-grid     { grid-template-columns: 1fr; gap: 20px; }
   .ct-section-inner {
     grid-template-columns: 1fr;
     gap: 60px;
@@ -501,6 +581,7 @@
 @media (max-width: 640px) {
   .ct-hero-inner    { padding: 120px 24px 48px; }
   .ct-section-inner { padding: 48px 24px 80px; }
+  .ct-gar-inner     { padding: 0 24px; }
   .ct-promise-item  { padding: 14px 24px; }
   .ct-form-row      { grid-template-columns: 1fr; }
   .ct-submit        { width: 100%; justify-content: center; }
@@ -516,5 +597,6 @@
   .ct-input-border,
   .ct-submit,
   .ct-submit-arrow,
+  .ct-gar-card,
   .ct-info-email        { transition: none; }
 }

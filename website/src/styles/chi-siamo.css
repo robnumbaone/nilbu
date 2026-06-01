@@ -505,12 +505,248 @@
   background: rgba(236, 234, 228, 0.5);
 }
 
+/* ── Metodo / Come lavoriamo ──────────────────────────────────────────────── */
+.cs-metodo {
+  padding: 120px 0;
+  border-top: 1px solid var(--line-dk);
+  background: var(--bg-body);
+}
+
+.cs-metodo-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.cs-metodo-header {
+  max-width: 620px;
+  margin-bottom: 72px;
+}
+
+.cs-metodo-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.cs-metodo-headline {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  color: var(--paper);
+  margin-bottom: 18px;
+}
+
+.cs-metodo-sub {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.68;
+  color: var(--mute);
+}
+
+.cs-metodo-track {
+  position: relative;
+  padding-left: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.cs-metodo-line {
+  position: absolute;
+  left: 11px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--line-dk);
+  overflow: hidden;
+}
+
+.cs-metodo-line-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2));
+}
+
+.cs-step {
+  position: relative;
+}
+
+.cs-step-marker {
+  position: absolute;
+  left: -56px;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--bg-body);
+  border: 1px solid var(--line-dk);
+}
+
+.cs-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.cs-step:hover .cs-step-dot { transform: scale(1.5); }
+
+.cs-step-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.cs-step-label {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  margin: 6px 0 10px;
+}
+
+.cs-step-text {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.7;
+  color: var(--mute);
+  max-width: 560px;
+}
+
+/* ── Numeri (count-up) ────────────────────────────────────────────────────── */
+.cs-numeri {
+  padding: 96px 0;
+  border-top: 1px solid var(--line-dk);
+  background: var(--bg-surface);
+}
+
+.cs-numeri-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.cs-num-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 48px;
+}
+
+.cs-num-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.cs-num-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-dk);
+}
+
+.cs-num-value {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 84px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--paper);
+}
+
+.cs-num-suffix { color: var(--accent); }
+
+.cs-num-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--mute);
+}
+
+/* ── Stack marquee ────────────────────────────────────────────────────────── */
+.cs-stack {
+  padding: 80px 0;
+  border-top: 1px solid var(--line-dk);
+  background: var(--bg-body);
+  overflow: hidden;
+}
+
+.cs-stack-inner {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 80px;
+}
+
+.cs-stack-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cs-marquee {
+  position: relative;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.cs-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: cs-marquee 32s linear infinite;
+}
+
+.cs-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+}
+
+.cs-marquee-sep {
+  margin: 0 28px;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+@keyframes cs-marquee {
+  to { transform: translateX(-50%); }
+}
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .cs-hero-inner,
   .cs-story-inner,
   .cs-valori-inner,
+  .cs-metodo-inner,
+  .cs-numeri-inner,
+  .cs-stack-inner,
   .cs-dna-inner  { padding: 0 48px; }
+  .cs-num-grid   { grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
 }
 
 @media (max-width: 860px) {
@@ -523,10 +759,20 @@
   .cs-story-stats { gap: 28px; }
 }
 
+@media (max-width: 860px) {
+  .cs-metodo      { padding: 80px 0; }
+  .cs-numeri      { padding: 72px 0; }
+  .cs-num-grid    { grid-template-columns: 1fr; gap: 28px; }
+  .cs-metodo-header { margin-bottom: 48px; }
+}
+
 @media (max-width: 640px) {
   .cs-hero-inner,
   .cs-story-inner,
   .cs-valori-inner,
+  .cs-metodo-inner,
+  .cs-numeri-inner,
+  .cs-stack-inner,
   .cs-dna-inner  { padding: 0 24px; }
   .cs-cta-inner  { padding: 0 24px; }
   .cs-cta        { padding: 100px 0; }
@@ -538,9 +784,12 @@
 /* ── Reduced motion ───────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .cs-hero-scroll-line { animation: none; }
+  .cs-marquee-track    { animation: none; }
+  .cs-metodo-line-fill { transform: scaleY(1) !important; }
   .cs-val-text,
   .cs-val-num,
   .cs-val-rule,
   .cs-dna-word,
+  .cs-step-dot,
   .cs-cta-btn          { transition: none; }
 }

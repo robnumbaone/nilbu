@@ -1,0 +1,241 @@
+/* ── Privacy Policy ───────────────────────────────────────────────────────── */
+.pv-main {
+  background: var(--bg-body);
+  min-height: 100vh;
+}
+
+/* ── Hero ── */
+.pv-hero {
+  position: relative;
+  min-height: 62vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 140px 0 70px;
+  border-bottom: 1px solid var(--line-dk);
+}
+
+.pv-hero-bg {
+  position: absolute;
+  top: 50%;
+  right: -1vw;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(220px, 34vw, 480px);
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-dk);
+  pointer-events: none;
+  user-select: none;
+  will-change: opacity;
+}
+
+.pv-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.pv-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+
+.pv-hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 86px);
+  font-weight: 800;
+  letter-spacing: -0.042em;
+  line-height: 0.95;
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.pv-word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.pv-hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.6;
+  color: var(--mute);
+  max-width: 520px;
+}
+
+.pv-hero-updated {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--mute-dk);
+}
+
+/* ── Body ── */
+.pv-body-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 80px 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pv-block {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 32px;
+  padding: 44px 0;
+  border-top: 1px solid var(--line-dk);
+}
+
+.pv-block:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.pv-block-aside {
+  position: relative;
+}
+
+.pv-block-num {
+  position: sticky;
+  top: 120px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.pv-block-main {
+  max-width: 660px;
+}
+
+.pv-block-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--paper);
+  margin-bottom: 20px;
+}
+
+.pv-block-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pv-block-text {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.3vw, 16px);
+  line-height: 1.75;
+  color: var(--mute);
+}
+
+.pv-block-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.pv-block-li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.2vw, 15px);
+  line-height: 1.6;
+  color: var(--paper);
+}
+
+.pv-block-li-dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.pv-block-mail {
+  align-self: flex-start;
+  margin-top: 4px;
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 600;
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+
+.pv-block-mail:hover {
+  color: var(--accent);
+}
+
+/* ── Foot note ── */
+.pv-foot-note {
+  margin-top: 48px;
+  padding: 32px 36px;
+  border: 1px solid var(--line-dk);
+  border-radius: var(--r-card);
+  background: var(--bg-surface);
+}
+
+.pv-foot-note p {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.2vw, 15px);
+  line-height: 1.7;
+  color: var(--mute);
+}
+
+.pv-inline-mail,
+.pv-inline-link {
+  color: var(--accent-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.pv-inline-mail:hover,
+.pv-inline-link:hover {
+  border-color: var(--accent-soft);
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .pv-hero-inner { padding: 0 28px; }
+  .pv-body-inner { padding: 56px 28px 72px; }
+
+  .pv-block {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 32px 0;
+  }
+
+  .pv-block-num {
+    position: static;
+    top: auto;
+  }
+}
